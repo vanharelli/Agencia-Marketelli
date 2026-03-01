@@ -18,7 +18,7 @@ const LegalPolicies = ({ onBack }: LegalPoliciesProps) => {
             <ArrowLeft size={20} /> Voltar para o Início
           </button>
           <div className="flex items-center gap-3">
-            <img src="/Marketellilogo.png" alt="Logo" className="w-8 h-8 object-contain" />
+            <img src="/Marketellilogo.webp" alt="Logo" className="w-8 h-8 object-contain" />
             <span className="text-lg font-black tracking-[4px] uppercase">MARKETELLI</span>
           </div>
         </div>

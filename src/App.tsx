@@ -488,7 +488,7 @@ const MarketelliOfficial = () => {
             <div className="relative">
               <div className="absolute inset-0 bg-[#A020F0]/20 blur-xl rounded-full animate-pulse"></div>
               <img 
-                src="/Marketellilogo.png" 
+                src="/Marketellilogo.webp" 
                 alt="MARKETELLI Logo" 
                 fetchPriority="high"
                 loading="eager"
@@ -689,7 +689,7 @@ const MarketelliOfficial = () => {
               <div className="absolute -inset-4 bg-gradient-to-tr from-[#A020F0]/20 to-[#A020F0]/20 rounded-full blur-3xl opacity-50 group-hover:opacity-100 transition-opacity duration-700"></div>
               <div className="relative z-10 aspect-[3/4] w-full overflow-hidden rounded-2xl border border-white/10 group-hover:border-[#A020F0]/50 transition-colors duration-500">
                 <img 
-                  src="/lucas.png" 
+                  src="/lucas.webp" 
                   alt="Lucas - Marketelli" 
                   className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700 scale-105 group-hover:scale-100"
                 />
@@ -705,7 +705,7 @@ const MarketelliOfficial = () => {
               <div className="absolute -inset-4 bg-gradient-to-tr from-[#A020F0]/20 to-[#A020F0]/20 rounded-full blur-3xl opacity-50 group-hover:opacity-100 transition-opacity duration-700"></div>
               <div className="relative z-10 aspect-[3/4] w-full overflow-hidden rounded-2xl border border-white/10 group-hover:border-[#A020F0]/50 transition-colors duration-500">
                 <img 
-                  src="/monaliza.jpg" 
+                  src="/monaliza.webp" 
                   alt="Monaliza - Marketelli" 
                   className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700 scale-105 group-hover:scale-100"
                 />
@@ -891,7 +891,7 @@ const MarketelliOfficial = () => {
           <div className="flex flex-col items-center gap-4 pt-2 border-t md:border-t-0 border-white/5 w-full md:w-auto">
             <div className="flex flex-col items-center gap-1">
               <div className="flex items-center gap-3">
-                <img src="/Marketellilogo.png" alt="Logo" className="w-6 h-6 object-contain" />
+                <img src="/Marketellilogo.webp" alt="Logo" className="w-6 h-6 object-contain" />
                 <span className="text-base md:text-lg font-black tracking-[3px] md:tracking-[5px] animate-pulse-neon-text uppercase">MARKETELLI</span>
               </div>
               <span className="text-[5px] md:text-[6px] tracking-[2px] md:tracking-[4px] text-[#A020F0] uppercase">Soluções • Resultados • Tecnologia</span>
