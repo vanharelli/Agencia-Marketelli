@@ -1,5 +1,5 @@
 import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
-import { ShieldCheck, Zap, Globe, Hotel, Utensils, Map, Target, Instagram, TrendingUp, BarChart3, Users, Check, Search, Code, Rocket, Cpu, MessageSquare, Eye, Mail, X, ChevronRight, Plus, ChevronLeft, Star, MessageCircle, Car } from 'lucide-react';
+import { Hotel, Utensils, Instagram, Check, Mail, X, ChevronRight, Plus, ChevronLeft, Star, MessageCircle, Car } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import LegalPolicies from './components/LegalPolicies';
 import { useFrontendShield } from './hooks/useFrontendShield';
