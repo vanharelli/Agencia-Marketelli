@@ -438,7 +438,7 @@ const MarketelliOfficial = () => {
                       <button 
                         onClick={() => {
                           if (formData.name && formData.whatsapp && formData.email) {
-                            const msg = `Olá Marketelli!\n\n*Solicitação de Análise de Viabilidade*\n\n● *Setor:* ${selectedSectorData?.title}\n● *Nome:* ${formData.name}\n● *WhatsApp:* ${formData.whatsapp}\n● *E-mail:* ${formData.email}\n● *Site:* ${formData.website || 'Não informado'}\n● *Instagram:* ${formData.instagram || 'Não informado'}\n\n*Sobre a Operação:*\n${formData.details || 'Não informado'}\n\n_Enviado via Ecossistema Marketelli_`;
+                            const msg = `Olá, equipe Marketelli. Aqui é ${formData.name}.\n\nRequisito a implementação de infraestrutura tecnológica para o setor de ${selectedSectorData?.title || 'Alta Performance'}.\n\nDados para análise técnica preliminar:\n\n🏢 Setor: ${selectedSectorData?.title || 'Não especificado'}\n✉️ E-mail Corporativo: ${formData.email}\n📱 Linha Direta: ${formData.whatsapp}\n🌐 Infraestrutura Atual: ${formData.website || 'Não possui'}\n📸 Presença Digital: ${formData.instagram || 'Não informado'}\n\n📊 Breve resumo:\n${formData.details || 'Dados reservados para a etapa de auditoria.'}\n\nAguardo o especialista técnico designado.`;
                             window.open(`https://wa.me/5561982062229?text=${encodeURIComponent(msg)}`, '_blank');
                             setIsModalOpen(false);
                             setModalStep(1);
