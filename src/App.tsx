@@ -259,36 +259,40 @@ const MarketelliOfficial = () => {
                     exit={{ opacity: 0, x: 20 }}
                     className="flex flex-col h-full justify-center"
                   >
-                    <div className="text-center mb-8">
-                      <h3 className="text-xl md:text-2xl font-black tracking-[4px] text-white uppercase mb-2">Qual setor você atua?</h3>
-                      <p className="text-gray-400 text-sm tracking-[1px]">Selecione o pilar que vamos transformar em ativo.</p>
-                    </div>
+                    <div className="flex-1 flex flex-col justify-center overflow-hidden">
+                      <div className="text-center mb-4 md:mb-6 shrink-0">
+                        <h3 className="text-xl md:text-2xl font-black tracking-[4px] text-white uppercase mb-2">Qual setor você atua?</h3>
+                        <p className="text-gray-400 text-sm tracking-[1px]">Selecione o pilar que vamos transformar em ativo.</p>
+                      </div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 w-full">
-                      {sectors.map((sector) => (
-                        <button
-                          key={sector.id}
-                          onClick={() => {
-                            if (sector.id === 'outros') {
-                              setShowOtherInput(true);
-                              setSelectedSectorData(sector);
-                            } else {
-                              setSelectedSectorData(sector);
-                              setModalStep(2);
-                            }
-                          }}
-                          className="w-full group relative flex flex-col items-center gap-3 p-4 bg-white/5 border border-white/10 rounded-xl hover:border-[#A020F0] transition-all duration-300 text-center animate-pulse-neon h-full justify-between"
-                        >
-                          <div className="w-12 h-12 bg-black border border-[#A020F0]/30 rounded-full flex items-center justify-center group-hover:bg-[#A020F0]/10 transition-colors shrink-0">
-                            {sector.icon}
-                          </div>
-                          <div className="flex-1 flex flex-col justify-center">
-                            <h4 className="text-white text-base font-bold tracking-[2px] uppercase mb-1">{sector.title}</h4>
-                            <p className="text-gray-400 text-[10px] font-light leading-tight line-clamp-2">{sector.desc}</p>
-                          </div>
-                          <ChevronRight className="absolute right-2 top-1/2 -translate-y-1/2 text-gray-600 group-hover:text-[#A020F0] transition-colors opacity-0 group-hover:opacity-100" size={16} />
-                        </button>
-                      ))}
+                      <div className="overflow-y-auto px-1 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:'none'] [scrollbar-width:'none']">
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 w-full">
+                          {sectors.map((sector) => (
+                            <button
+                              key={sector.id}
+                              onClick={() => {
+                                if (sector.id === 'outros') {
+                                  setShowOtherInput(true);
+                                  setSelectedSectorData(sector);
+                                } else {
+                                  setSelectedSectorData(sector);
+                                  setModalStep(2);
+                                }
+                              }}
+                              className="w-full group relative flex flex-col items-center gap-3 p-4 bg-white/5 border border-white/10 rounded-xl hover:border-[#A020F0] transition-all duration-300 text-center animate-pulse-neon h-full min-h-[160px] justify-between"
+                            >
+                              <div className="w-12 h-12 bg-black border border-[#A020F0]/30 rounded-full flex items-center justify-center group-hover:bg-[#A020F0]/10 transition-colors shrink-0">
+                                {sector.icon}
+                              </div>
+                              <div className="flex-1 flex flex-col justify-center">
+                                <h4 className="text-white text-base font-bold tracking-[2px] uppercase mb-1">{sector.title}</h4>
+                                <p className="text-gray-400 text-[10px] font-light leading-tight line-clamp-2">{sector.desc}</p>
+                              </div>
+                              <ChevronRight className="absolute right-2 top-1/2 -translate-y-1/2 text-gray-600 group-hover:text-[#A020F0] transition-colors opacity-0 group-hover:opacity-100" size={16} />
+                            </button>
+                          ))}
+                        </div>
+                      </div>
                     </div>
 
                     {showOtherInput && (
@@ -433,7 +437,7 @@ const MarketelliOfficial = () => {
                         onClick={() => {
                           if (formData.name && formData.whatsapp && formData.email) {
                             const msg = `Olá Marketelli!\n\n*Solicitação de Análise de Viabilidade*\n\n● *Setor:* ${selectedSectorData?.title}\n● *Nome:* ${formData.name}\n● *WhatsApp:* ${formData.whatsapp}\n● *E-mail:* ${formData.email}\n● *Site:* ${formData.website || 'Não informado'}\n● *Instagram:* ${formData.instagram || 'Não informado'}\n\n*Sobre a Operação:*\n${formData.details || 'Não informado'}\n\n_Enviado via Ecossistema Marketelli_`;
-                            window.open(`https://wa.me/5511910546124?text=${encodeURIComponent(msg)}`, '_blank');
+                            window.open(`https://wa.me/5561982062229?text=${encodeURIComponent(msg)}`, '_blank');
                             setIsModalOpen(false);
                             setModalStep(1);
                             setFormData({ name: '', whatsapp: '', email: '', website: '', instagram: '', details: '' });
