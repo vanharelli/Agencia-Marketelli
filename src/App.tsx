@@ -400,9 +400,10 @@ const MarketelliOfficial = () => {
 
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-1">
                           <div className="space-y-0">
-                            <label className="text-[7px] text-[#A020F0] font-black tracking-[1px] uppercase">Site <span className="text-gray-500 font-light text-[6px]">(Opcional)</span></label>
+                            <label className="text-[7px] text-[#A020F0] font-black tracking-[1px] uppercase">Site</label>
                             <input 
                               type="url"
+                              required
                               value={formData.website}
                               onChange={(e) => setFormData({...formData, website: e.target.value})}
                               placeholder="www.site.com"
@@ -410,9 +411,10 @@ const MarketelliOfficial = () => {
                             />
                           </div>
                           <div className="space-y-0">
-                            <label className="text-[7px] text-[#A020F0] font-black tracking-[1px] uppercase">Instagram <span className="text-gray-500 font-light text-[6px]">(Opcional)</span></label>
+                            <label className="text-[7px] text-[#A020F0] font-black tracking-[1px] uppercase">Instagram</label>
                             <input 
                               type="text"
+                              required
                               value={formData.instagram}
                               onChange={(e) => setFormData({...formData, instagram: e.target.value})}
                               placeholder="@usuario"
@@ -437,14 +439,14 @@ const MarketelliOfficial = () => {
                     <div className="flex-none mt-0">
                       <button 
                         onClick={() => {
-                          if (formData.name && formData.whatsapp && formData.email) {
-                            const msg = `Olá, equipe Marketelli. Aqui é ${formData.name}.\n\nRequisito a implementação de infraestrutura tecnológica para o setor de ${selectedSectorData?.title || 'Alta Performance'}.\n\nDados para análise técnica preliminar:\n\n🏢 Setor: ${selectedSectorData?.title || 'Não especificado'}\n✉️ E-mail Corporativo: ${formData.email}\n📱 Linha Direta: ${formData.whatsapp}\n🌐 Infraestrutura Atual: ${formData.website || 'Não possui'}\n📸 Presença Digital: ${formData.instagram || 'Não informado'}\n\n📊 Breve resumo:\n${formData.details || 'Dados reservados para a etapa de auditoria.'}\n\nAguardo o especialista técnico designado.`;
+                          if (formData.name && formData.whatsapp && formData.email && formData.website && formData.instagram) {
+                            const msg = `Olá, equipe Marketelli. Aqui é ${formData.name}.\n\nRequisito a implementação de infraestrutura tecnológica para o setor de ${selectedSectorData?.title || 'Alta Performance'}.\n\nDados para análise técnica preliminar:\n\n🏢 Setor: ${selectedSectorData?.title || 'Não especificado'}\n✉️ E-mail Corporativo: ${formData.email}\n📱 Linha Direta: ${formData.whatsapp}\n🌐 Infraestrutura Atual: ${formData.website}\n📸 Presença Digital: ${formData.instagram}\n\n📊 Breve resumo:\n${formData.details || 'Dados reservados para a etapa de auditoria.'}\n\nAguardo o especialista técnico designado.`;
                             window.open(`https://wa.me/5561982062229?text=${encodeURIComponent(msg)}`, '_blank');
                             setIsModalOpen(false);
                             setModalStep(1);
                             setFormData({ name: '', whatsapp: '', email: '', website: '', instagram: '', details: '' });
                           } else {
-                            alert('Por favor, preencha os campos obrigatórios (Nome, WhatsApp e E-mail).');
+                            alert('Por favor, preencha todos os campos obrigatórios (Nome, WhatsApp, E-mail, Site e Instagram).');
                           }
                         }}
                         className="w-full bg-[#A020F0] hover:bg-[#A020F0]/80 text-white py-3 rounded-lg text-xs md:text-sm font-black tracking-[2px] uppercase transition-all shadow-[0_0_20px_rgba(160,32,240,0.3)] hover:shadow-[0_0_30px_rgba(160,32,240,0.5)]"
