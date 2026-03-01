@@ -38,6 +38,15 @@ export function useFrontendShield() {
       e.preventDefault();
     };
 
+    // 4. Verificação de Domínio (Domain Lock)
+    const allowedDomains = ['localhost', '127.0.0.1', 'agencia-marketelli.vercel.app'];
+    const currentDomain = window.location.hostname;
+    const isAllowed = allowedDomains.some(domain => currentDomain.includes(domain));
+
+    if (!isAllowed) {
+      window.location.href = 'about:blank';
+    }
+
     // Montagem dos Listeners
     document.addEventListener('contextmenu', handleContextMenu);
     document.addEventListener('keydown', handleKeyDown);
