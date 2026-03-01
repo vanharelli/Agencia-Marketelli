@@ -259,14 +259,14 @@ const MarketelliOfficial = () => {
                     exit={{ opacity: 0, x: 20 }}
                     className="flex flex-col h-full justify-center"
                   >
-                    <div className="flex-1 flex flex-col justify-center overflow-hidden">
-                      <div className="text-center mb-4 md:mb-6 shrink-0">
-                        <h3 className="text-xl md:text-2xl font-black tracking-[4px] text-white uppercase mb-2">Qual setor você atua?</h3>
-                        <p className="text-gray-400 text-sm tracking-[1px]">Selecione o pilar que vamos transformar em ativo.</p>
+                    <div className="flex-1 flex flex-col justify-center overflow-hidden pt-2">
+                      <div className="text-center mb-2 md:mb-6 shrink-0">
+                        <h3 className="text-lg md:text-2xl font-black tracking-[3px] text-white uppercase mb-1">Qual setor você atua?</h3>
+                        <p className="text-gray-400 text-xs md:text-sm tracking-[1px]">Selecione o pilar que vamos transformar em ativo.</p>
                       </div>
 
                       <div className="overflow-y-auto px-1 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:'none'] [scrollbar-width:'none']">
-                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 w-full">
+                        <div className="grid grid-cols-2 lg:grid-cols-4 gap-2 md:gap-4 w-full">
                           {sectors.map((sector) => (
                             <button
                               key={sector.id}
@@ -279,16 +279,18 @@ const MarketelliOfficial = () => {
                                   setModalStep(2);
                                 }
                               }}
-                              className="w-full group relative flex flex-col items-center gap-3 p-4 bg-white/5 border border-white/10 rounded-xl hover:border-[#A020F0] transition-all duration-300 text-center animate-pulse-neon h-full min-h-[160px] justify-between"
+                              className="w-full group relative flex flex-col items-center gap-2 p-3 md:p-4 bg-white/5 border border-white/10 rounded-xl hover:border-[#A020F0] transition-all duration-300 text-center animate-pulse-neon h-full min-h-[130px] md:min-h-[160px] justify-center"
                             >
-                              <div className="w-12 h-12 bg-black border border-[#A020F0]/30 rounded-full flex items-center justify-center group-hover:bg-[#A020F0]/10 transition-colors shrink-0">
-                                {sector.icon}
+                              <div className="w-10 h-10 md:w-12 md:h-12 bg-black border border-[#A020F0]/30 rounded-full flex items-center justify-center group-hover:bg-[#A020F0]/10 transition-colors shrink-0">
+                                <div className="scale-75 md:scale-100">
+                                  {sector.icon}
+                                </div>
                               </div>
-                              <div className="flex-1 flex flex-col justify-center">
-                                <h4 className="text-white text-base font-bold tracking-[2px] uppercase mb-1">{sector.title}</h4>
-                                <p className="text-gray-400 text-[10px] font-light leading-tight line-clamp-2">{sector.desc}</p>
+                              <div className="flex-1 flex flex-col justify-center w-full">
+                                <h4 className="text-white text-xs md:text-base font-bold tracking-[1px] md:tracking-[2px] uppercase mb-1 line-clamp-1">{sector.title}</h4>
+                                <p className="text-gray-400 text-[8px] md:text-[10px] font-light leading-tight line-clamp-2 w-full">{sector.desc}</p>
                               </div>
-                              <ChevronRight className="absolute right-2 top-1/2 -translate-y-1/2 text-gray-600 group-hover:text-[#A020F0] transition-colors opacity-0 group-hover:opacity-100" size={16} />
+                              <ChevronRight className="absolute right-1 top-1/2 -translate-y-1/2 text-gray-600 group-hover:text-[#A020F0] transition-colors opacity-0 group-hover:opacity-100 hidden md:block" size={16} />
                             </button>
                           ))}
                         </div>
