@@ -237,7 +237,7 @@ const MarketelliOfficial = () => {
               initial={{ scale: 0.9, opacity: 0, y: 20 }}
               animate={{ scale: 1, opacity: 1, y: 0 }}
               exit={{ scale: 0.9, opacity: 0, y: 20 }}
-              className="relative w-full max-w-2xl bg-white/5 backdrop-blur-3xl border border-[#A020F0]/30 rounded-2xl p-6 md:p-8 shadow-[0_0_50px_rgba(160,32,240,0.3)] max-h-[90vh] overflow-y-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:'none'] [scrollbar-width:'none']"
+              className="relative w-full max-w-4xl bg-white/5 backdrop-blur-3xl border border-[#A020F0]/30 rounded-2xl p-6 md:p-8 shadow-[0_0_50px_rgba(160,32,240,0.3)] max-h-[95vh] overflow-hidden flex flex-col"
             >
               <button 
                 onClick={() => {
@@ -245,7 +245,7 @@ const MarketelliOfficial = () => {
                   setModalStep(1);
                   setShowOtherInput(false);
                 }}
-                className="absolute top-4 right-4 md:top-6 md:right-6 text-gray-500 hover:text-white transition-colors p-2"
+                className="absolute top-4 right-4 md:top-6 md:right-6 text-gray-500 hover:text-white transition-colors p-2 z-50"
               >
                 <X size={24} />
               </button>
@@ -257,13 +257,14 @@ const MarketelliOfficial = () => {
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 1, x: 0 }}
                     exit={{ opacity: 0, x: 20 }}
+                    className="flex flex-col h-full justify-center"
                   >
-                    <div className="text-center mb-10">
-                      <h3 className="text-2xl font-black tracking-[4px] text-white uppercase mb-2">Qual setor você atua?</h3>
+                    <div className="text-center mb-8">
+                      <h3 className="text-xl md:text-2xl font-black tracking-[4px] text-white uppercase mb-2">Qual setor você atua?</h3>
                       <p className="text-gray-400 text-sm tracking-[1px]">Selecione o pilar que vamos transformar em ativo.</p>
                     </div>
 
-                    <div className="flex justify-center flex-wrap gap-4">
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 w-full">
                       {sectors.map((sector) => (
                         <button
                           key={sector.id}
@@ -276,16 +277,16 @@ const MarketelliOfficial = () => {
                               setModalStep(2);
                             }
                           }}
-                          className="w-full max-w-[280px] group relative flex flex-col items-center gap-4 p-6 bg-white/5 border border-white/10 rounded-xl hover:border-[#A020F0] transition-all duration-300 text-center animate-pulse-neon"
+                          className="w-full group relative flex flex-col items-center gap-3 p-4 bg-white/5 border border-white/10 rounded-xl hover:border-[#A020F0] transition-all duration-300 text-center animate-pulse-neon h-full justify-between"
                         >
-                          <div className="w-14 h-14 bg-black border border-[#A020F0]/30 rounded-full flex items-center justify-center group-hover:bg-[#A020F0]/10 transition-colors">
+                          <div className="w-12 h-12 bg-black border border-[#A020F0]/30 rounded-full flex items-center justify-center group-hover:bg-[#A020F0]/10 transition-colors shrink-0">
                             {sector.icon}
                           </div>
-                          <div className="flex-1">
-                            <h4 className="text-white text-lg font-bold tracking-[2px] uppercase mb-2">{sector.title}</h4>
-                            <p className="text-gray-400 text-xs font-light">{sector.desc}</p>
+                          <div className="flex-1 flex flex-col justify-center">
+                            <h4 className="text-white text-base font-bold tracking-[2px] uppercase mb-1">{sector.title}</h4>
+                            <p className="text-gray-400 text-[10px] font-light leading-tight line-clamp-2">{sector.desc}</p>
                           </div>
-                          <ChevronRight className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-600 group-hover:text-[#A020F0] transition-colors" size={18} />
+                          <ChevronRight className="absolute right-2 top-1/2 -translate-y-1/2 text-gray-600 group-hover:text-[#A020F0] transition-colors opacity-0 group-hover:opacity-100" size={16} />
                         </button>
                       ))}
                     </div>
@@ -513,8 +514,7 @@ const MarketelliOfficial = () => {
             }}
             className="border border-[#A020F0]/50 px-4 md:px-8 py-1.5 md:py-2 rounded-sm text-[10px] md:text-xs font-bold hover:bg-[#A020F0]/20 transition-all duration-500 tracking-[1px] md:tracking-[2px] whitespace-nowrap"
           >
-            <span className="hidden sm:inline">CONSULTORIA DE ELITE</span>
-            <span className="sm:hidden">Consultar</span>
+            CONSULTORIA
           </button>
         </div>
       </motion.nav>
