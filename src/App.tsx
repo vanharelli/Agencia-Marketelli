@@ -237,7 +237,7 @@ const MarketelliOfficial = () => {
               initial={{ scale: 0.9, opacity: 0, y: 20 }}
               animate={{ scale: 1, opacity: 1, y: 0 }}
               exit={{ scale: 0.9, opacity: 0, y: 20 }}
-              className="relative w-full max-w-4xl bg-white/5 backdrop-blur-3xl border border-[#A020F0]/30 rounded-2xl p-6 md:p-8 shadow-[0_0_50px_rgba(160,32,240,0.3)] max-h-[95vh] overflow-hidden flex flex-col"
+              className="relative w-full max-w-4xl bg-white/5 backdrop-blur-3xl border border-[#A020F0]/30 rounded-2xl p-4 md:p-6 shadow-[0_0_50px_rgba(160,32,240,0.3)] max-h-[95vh] overflow-hidden flex flex-col"
             >
               <button 
                 onClick={() => {
@@ -245,9 +245,9 @@ const MarketelliOfficial = () => {
                   setModalStep(1);
                   setShowOtherInput(false);
                 }}
-                className="absolute top-4 right-4 md:top-6 md:right-6 text-gray-500 hover:text-white transition-colors p-2 z-50"
+                className="absolute top-3 right-3 md:top-4 md:right-4 text-gray-500 hover:text-white transition-colors p-1 z-50"
               >
-                <X size={24} />
+                <X size={20} />
               </button>
 
               <AnimatePresence mode="wait">
@@ -325,109 +325,110 @@ const MarketelliOfficial = () => {
                     initial={{ opacity: 0, x: 20 }}
                     animate={{ opacity: 1, x: 0 }}
                     exit={{ opacity: 0, x: -20 }}
-                    className="space-y-6"
+                    className="flex flex-col h-full"
                   >
                     <button 
                       onClick={() => setModalStep(1)}
-                      className="flex items-center gap-2 text-[#A020F0] text-xs font-bold uppercase tracking-[2px] hover:text-white transition-colors mb-4"
+                      className="absolute top-3 left-3 flex items-center gap-1 text-[#A020F0] text-[9px] font-bold uppercase tracking-[1px] hover:text-white transition-colors z-50"
                     >
-                      <ChevronLeft size={16} /> Voltar
+                      <ChevronLeft size={12} /> Voltar
                     </button>
 
-                    <div className="text-center mb-8">
-                      <h3 className="text-2xl font-black tracking-[4px] text-white uppercase mb-2">Quase lá!</h3>
-                      <p className="text-gray-400 text-sm tracking-[1px]">
-                        Setor selecionado: <span className="text-white font-bold">{selectedSectorData?.title}</span>
-                      </p>
-                      <p className="text-[#A020F0] text-[10px] font-bold tracking-[1px] mt-2 uppercase animate-pulse">
-                        Após o preenchimento, você será direcionado para nossa análise de viabilidade via WhatsApp. Basta enviar a Mensagem automática gerada.
-                      </p>
-                    </div>
-
-                    <div className="space-y-4">
-                      <div className="space-y-2">
-                        <label className="text-[10px] text-[#A020F0] font-black tracking-[3px] uppercase">Nome Completo</label>
-                        <input 
-                          type="text"
-                          required
-                          value={formData.name}
-                          onChange={(e) => setFormData({...formData, name: e.target.value})}
-                          placeholder="Seu nome"
-                          className="w-full bg-black/50 border border-white/10 rounded-lg px-4 py-3 text-base md:text-sm text-white focus:outline-none focus:border-[#A020F0] transition-colors placeholder:text-gray-600"
-                        />
+                    <div className="flex-1 flex flex-col justify-center overflow-hidden pt-2">
+                      <div className="text-center mb-1 shrink-0">
+                        <h3 className="text-base font-black tracking-[2px] text-white uppercase mb-0">Quase lá!</h3>
+                        <p className="text-[#A020F0] text-[7px] font-bold tracking-[1px] uppercase animate-pulse">
+                          Basta enviar a Mensagem automática gerada no WhatsApp.
+                        </p>
                       </div>
 
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <div className="space-y-2">
-                          <label className="text-[10px] text-[#A020F0] font-black tracking-[3px] uppercase">WhatsApp</label>
-                          <input 
-                            type="tel"
-                            required
-                            value={formData.whatsapp}
-                            onChange={(e) => {
-                              let value = e.target.value.replace(/\D/g, '');
-                              if (value.length > 11) value = value.slice(0, 11);
-                              
-                              let formatted = value;
-                              if (value.length > 2) {
-                                formatted = `(${value.slice(0, 2)}) ${value.slice(2)}`;
-                              }
-                              if (value.length > 7) {
-                                formatted = `(${value.slice(0, 2)}) ${value.slice(2, 7)}-${value.slice(7)}`;
-                              }
-                              setFormData({...formData, whatsapp: formatted});
-                            }}
-                            placeholder="(00) 00000-0000"
-                            className="w-full bg-black/50 border border-white/10 rounded-lg px-4 py-3 text-base md:text-sm text-white focus:outline-none focus:border-[#A020F0] transition-colors placeholder:text-gray-600"
-                          />
-                        </div>
-                        <div className="space-y-2">
-                          <label className="text-[10px] text-[#A020F0] font-black tracking-[3px] uppercase">E-mail</label>
-                          <input 
-                            type="email"
-                            required
-                            value={formData.email}
-                            onChange={(e) => setFormData({...formData, email: e.target.value})}
-                            placeholder="seu@email.com"
-                            className="w-full bg-black/50 border border-white/10 rounded-lg px-4 py-3 text-base md:text-sm text-white focus:outline-none focus:border-[#A020F0] transition-colors placeholder:text-gray-600"
-                          />
-                        </div>
-                      </div>
-
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <div className="space-y-2">
-                          <label className="text-[10px] text-[#A020F0] font-black tracking-[3px] uppercase">Site da Empresa <span className="text-gray-500 font-light">(Opcional)</span></label>
-                          <input 
-                            type="url"
-                            value={formData.website}
-                            onChange={(e) => setFormData({...formData, website: e.target.value})}
-                            placeholder="www.suaempresa.com"
-                            className="w-full bg-black/50 border border-white/10 rounded-lg px-4 py-3 text-base md:text-sm text-white focus:outline-none focus:border-[#A020F0] transition-colors placeholder:text-gray-600"
-                          />
-                        </div>
-                        <div className="space-y-2">
-                          <label className="text-[10px] text-[#A020F0] font-black tracking-[3px] uppercase">Instagram <span className="text-gray-500 font-light">(Opcional)</span></label>
+                      <div className="space-y-1 overflow-y-auto px-1 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:'none'] [scrollbar-width:'none']">
+                        <div className="space-y-0">
+                          <label className="text-[7px] text-[#A020F0] font-black tracking-[1px] uppercase">Nome</label>
                           <input 
                             type="text"
-                            value={formData.instagram}
-                            onChange={(e) => setFormData({...formData, instagram: e.target.value})}
-                            placeholder="@seuusuario"
-                            className="w-full bg-black/50 border border-white/10 rounded-lg px-4 py-3 text-base md:text-sm text-white focus:outline-none focus:border-[#A020F0] transition-colors placeholder:text-gray-600"
+                            required
+                            value={formData.name}
+                            onChange={(e) => setFormData({...formData, name: e.target.value})}
+                            placeholder="Seu nome"
+                            className="w-full bg-black/50 border border-white/10 rounded px-2 py-0 text-[9px] text-white focus:outline-none focus:border-[#A020F0] transition-colors placeholder:text-gray-600 h-5 md:h-6"
+                          />
+                        </div>
+
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-1">
+                          <div className="space-y-0">
+                            <label className="text-[7px] text-[#A020F0] font-black tracking-[1px] uppercase">WhatsApp</label>
+                            <input 
+                              type="tel"
+                              required
+                              value={formData.whatsapp}
+                              onChange={(e) => {
+                                let value = e.target.value.replace(/\D/g, '');
+                                if (value.length > 11) value = value.slice(0, 11);
+                                
+                                let formatted = value;
+                                if (value.length > 2) {
+                                  formatted = `(${value.slice(0, 2)}) ${value.slice(2)}`;
+                                }
+                                if (value.length > 7) {
+                                  formatted = `(${value.slice(0, 2)}) ${value.slice(2, 7)}-${value.slice(7)}`;
+                                }
+                                setFormData({...formData, whatsapp: formatted});
+                              }}
+                              placeholder="(00) 00000-0000"
+                              className="w-full bg-black/50 border border-white/10 rounded px-2 py-0 text-[9px] text-white focus:outline-none focus:border-[#A020F0] transition-colors placeholder:text-gray-600 h-5 md:h-6"
+                            />
+                          </div>
+                          <div className="space-y-0">
+                            <label className="text-[7px] text-[#A020F0] font-black tracking-[1px] uppercase">E-mail</label>
+                            <input 
+                              type="email"
+                              required
+                              value={formData.email}
+                              onChange={(e) => setFormData({...formData, email: e.target.value})}
+                              placeholder="seu@email.com"
+                              className="w-full bg-black/50 border border-white/10 rounded px-2 py-0 text-[9px] text-white focus:outline-none focus:border-[#A020F0] transition-colors placeholder:text-gray-600 h-5 md:h-6"
+                            />
+                          </div>
+                        </div>
+
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-1">
+                          <div className="space-y-0">
+                            <label className="text-[7px] text-[#A020F0] font-black tracking-[1px] uppercase">Site <span className="text-gray-500 font-light text-[6px]">(Opcional)</span></label>
+                            <input 
+                              type="url"
+                              value={formData.website}
+                              onChange={(e) => setFormData({...formData, website: e.target.value})}
+                              placeholder="www.site.com"
+                              className="w-full bg-black/50 border border-white/10 rounded px-2 py-0 text-[9px] text-white focus:outline-none focus:border-[#A020F0] transition-colors placeholder:text-gray-600 h-5 md:h-6"
+                            />
+                          </div>
+                          <div className="space-y-0">
+                            <label className="text-[7px] text-[#A020F0] font-black tracking-[1px] uppercase">Instagram <span className="text-gray-500 font-light text-[6px]">(Opcional)</span></label>
+                            <input 
+                              type="text"
+                              value={formData.instagram}
+                              onChange={(e) => setFormData({...formData, instagram: e.target.value})}
+                              placeholder="@usuario"
+                              className="w-full bg-black/50 border border-white/10 rounded px-2 py-0 text-[9px] text-white focus:outline-none focus:border-[#A020F0] transition-colors placeholder:text-gray-600 h-5 md:h-6"
+                            />
+                          </div>
+                        </div>
+
+                        <div className="space-y-0">
+                          <label className="text-[7px] text-[#A020F0] font-black tracking-[1px] uppercase">Detalhes</label>
+                          <textarea 
+                            rows={2}
+                            value={formData.details}
+                            onChange={(e) => setFormData({...formData, details: e.target.value})}
+                            placeholder="Breve descrição..."
+                            className="w-full bg-black/50 border border-white/10 rounded px-2 py-0 text-[9px] text-white focus:outline-none focus:border-[#A020F0] transition-colors resize-none placeholder:text-gray-600"
                           />
                         </div>
                       </div>
+                    </div>
 
-                      <div className="space-y-2">
-                        <label className="text-[10px] text-[#A020F0] font-black tracking-[3px] uppercase">Detalhes do Negócio</label>
-                        <textarea 
-                          rows={4}
-                          value={formData.details}
-                          onChange={(e) => setFormData({...formData, details: e.target.value})}
-                          placeholder="conte-nos brevemente sobre seu negocio.."
-                          className="w-full bg-black/50 border border-white/10 rounded-lg px-4 py-3 text-base md:text-sm text-white focus:outline-none focus:border-[#A020F0] transition-colors resize-none placeholder:text-gray-600"
-                        />
-                      </div>
-
+                    <div className="flex-none mt-0">
                       <button 
                         onClick={() => {
                           if (formData.name && formData.whatsapp && formData.email) {
@@ -440,9 +441,9 @@ const MarketelliOfficial = () => {
                             alert('Por favor, preencha os campos obrigatórios (Nome, WhatsApp e E-mail).');
                           }
                         }}
-                        className="w-full bg-[#A020F0] hover:bg-[#A020F0]/80 text-white py-4 rounded-xl text-sm font-black tracking-[2px] uppercase transition-all shadow-[0_0_20px_rgba(160,32,240,0.3)] hover:shadow-[0_0_30px_rgba(160,32,240,0.5)]"
+                        className="w-full bg-[#A020F0] hover:bg-[#A020F0]/80 text-white py-3 rounded-lg text-xs md:text-sm font-black tracking-[2px] uppercase transition-all shadow-[0_0_20px_rgba(160,32,240,0.3)] hover:shadow-[0_0_30px_rgba(160,32,240,0.5)]"
                       >
-                        SOLICITAR ANÁLISE AGORA
+                        SOLICITAR ANÁLISE
                       </button>
                     </div>
                   </motion.div>
