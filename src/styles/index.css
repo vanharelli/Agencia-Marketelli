@@ -1,0 +1,157 @@
+@import "tailwindcss";
+
+/* Anti-Seleção Global e Trava de Arraste */ 
+body { 
+  -webkit-user-select: none; 
+  -moz-user-select: none; 
+  -ms-user-select: none; 
+  user-select: none; 
+} 
+
+/* Exceção estrita para inputs e textareas */ 
+input, textarea { 
+  -webkit-user-select: auto; 
+  -moz-user-select: auto; 
+  -ms-user-select: auto; 
+  user-select: auto; 
+} 
+
+/* Trava de Mídia e Ghosting */ 
+img, video { 
+  -webkit-user-drag: none; 
+  pointer-events: none; 
+} 
+
+@keyframes glow-pulse {
+  0%, 100% { filter: drop-shadow(0 0 5px rgba(160, 32, 240, 0.4)); transform: scale(1); }
+  50% { filter: drop-shadow(0 0 15px rgba(160, 32, 240, 0.8)); transform: scale(1.05); }
+}
+
+.animate-glow-pulse {
+  animation: glow-pulse 3s ease-in-out infinite;
+}
+
+.text-metallic-3d {
+  background: linear-gradient(
+    to bottom,
+    #ffffff 0%,
+    #e5e4e2 20%,
+    #ffffff 45%,
+    #a1a1a1 50%,
+    #ffffff 55%,
+    #e5e4e2 80%,
+    #ffffff 100%
+  );
+  background-size: 100% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.9));
+  padding: 0.1em 0;
+  margin: -0.1em 0;
+  /* Camadas de sombra para efeito 3D profundo */
+  text-shadow: 
+    0 1px 0 #fff, 
+    0 2px 0 #eee, 
+    0 3px 0 #ddd, 
+    0 4px 0 #ccc, 
+    0 5px 0 #bbb, 
+    0 6px 0 #aaa, 
+    0 7px 0 #999, 
+    0 8px 0 #888,
+    0 10px 10px rgba(0,0,0,0.5);
+}
+
+@keyframes pulse-neon-text {
+  0%, 100% { color: #A020F0; text-shadow: 0 0 5px rgba(160, 32, 240, 0.5); }
+  50% { color: #D18CFF; text-shadow: 0 0 20px rgba(160, 32, 240, 1), 0 0 30px rgba(160, 32, 240, 0.6); }
+}
+
+.animate-pulse-neon-text {
+  animation: pulse-neon-text 3s ease-in-out infinite;
+}
+
+@keyframes pulse-neon-border {
+  0%, 100% { border-color: rgba(160, 32, 240, 0.2); box-shadow: 0 0 5px rgba(160, 32, 240, 0.1); }
+  50% { border-color: rgba(160, 32, 240, 0.6); box-shadow: 0 0 15px rgba(160, 32, 240, 0.3); }
+}
+
+.animate-pulse-neon {
+  animation: pulse-neon-border 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes pulse-prism {
+  0% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7); }
+  70% { box-shadow: 0 0 0 8px rgba(34, 197, 94, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0); }
+}
+
+.animate-pulse-prism {
+  animation: pulse-prism 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@theme {
+  --color-obsidian: #000000;
+  --color-purple-neon: #A020F0;
+  --color-chrome-silver: #E5E4E2;
+  --color-accent-neon: #A020F0;
+
+  --font-family-display: "Orbitron", sans-serif;
+  --font-family-body: "Inter", sans-serif;
+
+  --animate-shimmer: shimmer 1.5s infinite;
+  --animate-glitch: glitch 3s infinite;
+  --animate-glitch-delayed: glitch 3s infinite 0.1s;
+
+  @keyframes shimmer {
+    100% {
+      transform: translateX(100%);
+    }
+  }
+
+  @keyframes glitch {
+    0% {
+      clip-path: inset(40% 0 61% 0);
+      transform: translate(-2px, -2px);
+    }
+    10% {
+      clip-path: inset(92% 0 1% 0);
+      transform: translate(2px, 2px);
+    }
+    20% {
+      clip-path: inset(25% 0 58% 0);
+      transform: translate(-2px, 2px);
+    }
+    30% {
+      clip-path: inset(10% 0 86% 0);
+      transform: translate(2px, 2px);
+    }
+    40% {
+      clip-path: inset(29% 0 26% 0);
+      transform: translate(-2px, -2px);
+    }
+    50% {
+      clip-path: inset(54% 0 3% 0);
+      transform: translate(2px, 2px);
+    }
+    60% {
+      clip-path: inset(83% 0 14% 0);
+      transform: translate(-2px, 2px);
+    }
+    70% {
+      clip-path: inset(4% 0 91% 0);
+      transform: translate(2px, -2px);
+    }
+    80% {
+      clip-path: inset(36% 0 42% 0);
+      transform: translate(-2px, 2px);
+    }
+    90% {
+      clip-path: inset(62% 0 18% 0);
+      transform: translate(2px, -2px);
+    }
+    100% {
+      clip-path: inset(15% 0 77% 0);
+      transform: translate(-2px, 2px);
+    }
+  }
+}
