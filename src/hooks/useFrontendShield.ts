@@ -39,7 +39,7 @@ export function useFrontendShield() {
     };
 
     // 4. Verificação de Domínio (Domain Lock)
-    const allowedDomains = ['localhost', '127.0.0.1', 'agencia-marketelli.vercel.app'];
+    const allowedDomains = ['localhost', '127.0.0.1', 'agencia-marketelli.vercel.app', 'marketelli.com', 'www.marketelli.com'];
     const currentDomain = window.location.hostname;
     const isAllowed = allowedDomains.some(domain => currentDomain.includes(domain));
 
