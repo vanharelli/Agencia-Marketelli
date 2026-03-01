@@ -237,7 +237,7 @@ const MarketelliOfficial = () => {
               initial={{ scale: 0.9, opacity: 0, y: 20 }}
               animate={{ scale: 1, opacity: 1, y: 0 }}
               exit={{ scale: 0.9, opacity: 0, y: 20 }}
-              className="relative w-full max-w-2xl bg-white/5 backdrop-blur-3xl border border-[#A020F0]/30 rounded-2xl p-8 shadow-[0_0_50px_rgba(160,32,240,0.3)] max-h-[90vh] overflow-y-auto scrollbar-hide"
+              className="relative w-full max-w-2xl bg-white/5 backdrop-blur-3xl border border-[#A020F0]/30 rounded-2xl p-8 shadow-[0_0_50px_rgba(160,32,240,0.3)] max-h-[90vh] overflow-y-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:'none'] [scrollbar-width:'none']"
             >
               <button 
                 onClick={() => {
@@ -339,7 +339,7 @@ const MarketelliOfficial = () => {
                         Setor selecionado: <span className="text-white font-bold">{selectedSectorData?.title}</span>
                       </p>
                       <p className="text-[#A020F0] text-[10px] font-bold tracking-[1px] mt-2 uppercase animate-pulse">
-                        Após o preenchimento, você será direcionado para nossa análise de viabilidade via WhatsApp.
+                        Após o preenchimento, você será direcionado para nossa análise de viabilidade via WhatsApp. Basta enviar a Mensagem automática gerada.
                       </p>
                     </div>
 
@@ -529,7 +529,7 @@ const MarketelliOfficial = () => {
           </h1>
           
           <p className="text-[#A020F0] text-[10px] sm:text-sm md:text-lg font-bold tracking-[3px] md:tracking-[6px] uppercase mb-6 md:mb-8">
-            Do Balcão para o Digital • Automação 24h
+            Excelência no Serviço Físico • A Independência Financeira no Digital
           </p>
 
           <p className="max-w-2xl mx-auto text-gray-400 text-sm sm:text-base md:text-lg mb-8 md:mb-10 leading-relaxed font-light italic px-4 md:px-0">
