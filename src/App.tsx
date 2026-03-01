@@ -237,7 +237,7 @@ const MarketelliOfficial = () => {
               initial={{ scale: 0.9, opacity: 0, y: 20 }}
               animate={{ scale: 1, opacity: 1, y: 0 }}
               exit={{ scale: 0.9, opacity: 0, y: 20 }}
-              className="relative w-full max-w-2xl bg-white/5 backdrop-blur-3xl border border-[#A020F0]/30 rounded-2xl p-8 shadow-[0_0_50px_rgba(160,32,240,0.3)] max-h-[90vh] overflow-y-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:'none'] [scrollbar-width:'none']"
+              className="relative w-full max-w-2xl bg-white/5 backdrop-blur-3xl border border-[#A020F0]/30 rounded-2xl p-6 md:p-8 shadow-[0_0_50px_rgba(160,32,240,0.3)] max-h-[90vh] overflow-y-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:'none'] [scrollbar-width:'none']"
             >
               <button 
                 onClick={() => {
@@ -245,7 +245,7 @@ const MarketelliOfficial = () => {
                   setModalStep(1);
                   setShowOtherInput(false);
                 }}
-                className="absolute top-6 right-6 text-gray-500 hover:text-white transition-colors"
+                className="absolute top-4 right-4 md:top-6 md:right-6 text-gray-500 hover:text-white transition-colors p-2"
               >
                 <X size={24} />
               </button>
@@ -301,7 +301,7 @@ const MarketelliOfficial = () => {
                           value={otherSector}
                           onChange={(e) => setOtherSector(e.target.value)}
                           placeholder="Qual é o seu setor?"
-                          className="w-full bg-black/50 border border-white/10 rounded-lg px-4 py-3 text-sm text-white focus:outline-none focus:border-[#A020F0] transition-colors placeholder:text-gray-600"
+                          className="w-full bg-black/50 border border-white/10 rounded-lg px-4 py-3 text-base md:text-sm text-white focus:outline-none focus:border-[#A020F0] transition-colors placeholder:text-gray-600"
                           autoFocus
                         />
                         <button 
@@ -352,7 +352,7 @@ const MarketelliOfficial = () => {
                           value={formData.name}
                           onChange={(e) => setFormData({...formData, name: e.target.value})}
                           placeholder="Seu nome"
-                          className="w-full bg-black/50 border border-white/10 rounded-lg px-4 py-3 text-sm text-white focus:outline-none focus:border-[#A020F0] transition-colors placeholder:text-gray-600"
+                          className="w-full bg-black/50 border border-white/10 rounded-lg px-4 py-3 text-base md:text-sm text-white focus:outline-none focus:border-[#A020F0] transition-colors placeholder:text-gray-600"
                         />
                       </div>
 
@@ -377,7 +377,7 @@ const MarketelliOfficial = () => {
                               setFormData({...formData, whatsapp: formatted});
                             }}
                             placeholder="(00) 00000-0000"
-                            className="w-full bg-black/50 border border-white/10 rounded-lg px-4 py-3 text-sm text-white focus:outline-none focus:border-[#A020F0] transition-colors placeholder:text-gray-600"
+                            className="w-full bg-black/50 border border-white/10 rounded-lg px-4 py-3 text-base md:text-sm text-white focus:outline-none focus:border-[#A020F0] transition-colors placeholder:text-gray-600"
                           />
                         </div>
                         <div className="space-y-2">
@@ -388,7 +388,7 @@ const MarketelliOfficial = () => {
                             value={formData.email}
                             onChange={(e) => setFormData({...formData, email: e.target.value})}
                             placeholder="seu@email.com"
-                            className="w-full bg-black/50 border border-white/10 rounded-lg px-4 py-3 text-sm text-white focus:outline-none focus:border-[#A020F0] transition-colors placeholder:text-gray-600"
+                            className="w-full bg-black/50 border border-white/10 rounded-lg px-4 py-3 text-base md:text-sm text-white focus:outline-none focus:border-[#A020F0] transition-colors placeholder:text-gray-600"
                           />
                         </div>
                       </div>
@@ -401,7 +401,7 @@ const MarketelliOfficial = () => {
                             value={formData.website}
                             onChange={(e) => setFormData({...formData, website: e.target.value})}
                             placeholder="www.suaempresa.com"
-                            className="w-full bg-black/50 border border-white/10 rounded-lg px-4 py-3 text-sm text-white focus:outline-none focus:border-[#A020F0] transition-colors placeholder:text-gray-600"
+                            className="w-full bg-black/50 border border-white/10 rounded-lg px-4 py-3 text-base md:text-sm text-white focus:outline-none focus:border-[#A020F0] transition-colors placeholder:text-gray-600"
                           />
                         </div>
                         <div className="space-y-2">
@@ -411,7 +411,7 @@ const MarketelliOfficial = () => {
                             value={formData.instagram}
                             onChange={(e) => setFormData({...formData, instagram: e.target.value})}
                             placeholder="@seuusuario"
-                            className="w-full bg-black/50 border border-white/10 rounded-lg px-4 py-3 text-sm text-white focus:outline-none focus:border-[#A020F0] transition-colors placeholder:text-gray-600"
+                            className="w-full bg-black/50 border border-white/10 rounded-lg px-4 py-3 text-base md:text-sm text-white focus:outline-none focus:border-[#A020F0] transition-colors placeholder:text-gray-600"
                           />
                         </div>
                       </div>
@@ -423,7 +423,7 @@ const MarketelliOfficial = () => {
                           value={formData.details}
                           onChange={(e) => setFormData({...formData, details: e.target.value})}
                           placeholder="conte-nos brevemente sobre seu negocio.."
-                          className="w-full bg-black/50 border border-white/10 rounded-lg px-4 py-3 text-sm text-white focus:outline-none focus:border-[#A020F0] transition-colors resize-none placeholder:text-gray-600"
+                          className="w-full bg-black/50 border border-white/10 rounded-lg px-4 py-3 text-base md:text-sm text-white focus:outline-none focus:border-[#A020F0] transition-colors resize-none placeholder:text-gray-600"
                         />
                       </div>
 
@@ -490,6 +490,9 @@ const MarketelliOfficial = () => {
               <img 
                 src="/Marketellilogo.png" 
                 alt="MARKETELLI Logo" 
+                fetchPriority="high"
+                loading="eager"
+                decoding="sync"
                 className="w-8 h-8 md:w-10 md:h-10 object-contain relative z-10 animate-glow-pulse"
               />
             </div>
@@ -510,8 +513,8 @@ const MarketelliOfficial = () => {
             }}
             className="border border-[#A020F0]/50 px-4 md:px-8 py-1.5 md:py-2 rounded-sm text-[10px] md:text-xs font-bold hover:bg-[#A020F0]/20 transition-all duration-500 tracking-[1px] md:tracking-[2px] whitespace-nowrap"
           >
-            <span className="hidden xs:inline">CONSULTORIA DE ELITE</span>
-            <span className="xs:hidden">Consultar</span>
+            <span className="hidden sm:inline">CONSULTORIA DE ELITE</span>
+            <span className="sm:hidden">Consultar</span>
           </button>
         </div>
       </motion.nav>
