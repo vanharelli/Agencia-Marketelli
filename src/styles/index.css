@@ -1,5 +1,13 @@
 @import "tailwindcss";
 
+html, body {
+  /* Bloqueia o Pull-to-Refresh e o efeito elástico no topo/fundo da tela */
+  overscroll-behavior-y: none;
+  
+  /* Permite scroll vertical, mas proíbe o zoom por gestos no CSS */
+  touch-action: pan-y;
+}
+
 /* Anti-Seleção Global e Trava de Arraste */ 
 body { 
   -webkit-user-select: none; 
