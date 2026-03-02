@@ -15,7 +15,7 @@ const LegalPolicies = ({ onBack }: LegalPoliciesProps) => {
             onClick={onBack}
             className="flex items-center gap-2 text-[#A020F0] hover:text-white transition-colors font-bold text-sm uppercase tracking-[2px]"
           >
-            <ArrowLeft size={20} /> Voltar para o Início
+            <ArrowLeft size={20} /> Voltar
           </button>
           <div className="flex items-center gap-3">
             <img src="/Marketellilogo.webp" alt="Logo" className="w-8 h-8 object-contain" />
