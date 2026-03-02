@@ -239,7 +239,7 @@ const MarketelliOfficial = () => {
               initial={{ scale: 0.9, opacity: 0, y: 20 }}
               animate={{ scale: 1, opacity: 1, y: 0 }}
               exit={{ scale: 0.9, opacity: 0, y: 20 }}
-              className="relative w-full max-w-4xl bg-white/5 backdrop-blur-3xl border border-[#A020F0]/30 rounded-2xl p-4 md:p-6 shadow-[0_0_50px_rgba(160,32,240,0.3)] h-[85vh] md:h-auto max-h-[90vh] flex flex-col overflow-hidden"
+              className="relative w-full max-w-4xl bg-white/5 backdrop-blur-3xl border border-[#A020F0]/30 rounded-2xl p-4 md:p-6 shadow-[0_0_50px_rgba(160,32,240,0.3)] h-[85dvh] md:h-auto max-h-[90dvh] flex flex-col overflow-hidden overscroll-y-contain"
               onClick={(e) => e.stopPropagation()}
             >
               <button 
@@ -355,7 +355,7 @@ const MarketelliOfficial = () => {
                         </div>
                       </div>
 
-                      <div className="flex-1 overflow-y-auto px-1 space-y-4 overscroll-contain touch-auto pb-20 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:'none'] [scrollbar-width:'none']" style={{ WebkitOverflowScrolling: 'touch' }}>
+                      <div className="flex-1 overflow-y-auto px-1 space-y-4 touch-pan-y overscroll-y-contain pb-20 scrollbar-none [&::-webkit-scrollbar]:hidden [-ms-overflow-style:'none'] [scrollbar-width:'none']" style={{ WebkitOverflowScrolling: 'touch' }}>
                         <div className="space-y-1">
                           <label className="text-xs md:text-sm text-[#A020F0] font-black tracking-[1px] md:tracking-[2px] uppercase">Nome</label>
                           <input 
