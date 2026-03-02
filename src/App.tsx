@@ -239,7 +239,8 @@ const MarketelliOfficial = () => {
               initial={{ scale: 0.9, opacity: 0, y: 20 }}
               animate={{ scale: 1, opacity: 1, y: 0 }}
               exit={{ scale: 0.9, opacity: 0, y: 20 }}
-              className="relative w-full max-w-4xl bg-white/5 backdrop-blur-3xl border border-[#A020F0]/30 rounded-2xl p-4 md:p-6 shadow-[0_0_50px_rgba(160,32,240,0.3)] max-h-[95vh] overflow-hidden flex flex-col"
+              className="relative w-full max-w-4xl bg-white/5 backdrop-blur-3xl border border-[#A020F0]/30 rounded-2xl p-4 md:p-6 shadow-[0_0_50px_rgba(160,32,240,0.3)] h-[85vh] md:h-[90vh] max-h-[800px] flex flex-col overflow-hidden"
+              onClick={(e) => e.stopPropagation()}
             >
               <button 
                 onClick={() => {
@@ -259,16 +260,16 @@ const MarketelliOfficial = () => {
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 1, x: 0 }}
                     exit={{ opacity: 0, x: 20 }}
-                    className="flex flex-col h-full justify-center"
+                    className="flex flex-col h-full justify-center overflow-hidden"
                   >
-                    <div className="flex-1 flex flex-col justify-center overflow-hidden pt-2">
+                    <div className="flex-1 flex flex-col overflow-hidden pt-2">
                       <div className="text-center mb-2 md:mb-6 shrink-0">
                         <h3 className="text-lg md:text-2xl font-black tracking-[3px] text-white uppercase mb-1">Qual setor você atua?</h3>
                         <p className="text-gray-400 text-xs md:text-sm tracking-[1px]">Selecione o pilar que vamos transformar em ativo.</p>
                       </div>
 
-                      <div className="overflow-y-auto px-1 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:'none'] [scrollbar-width:'none']">
-                        <div className="grid grid-cols-2 lg:grid-cols-4 gap-2 md:gap-4 w-full">
+                      <div className="flex-1 overflow-y-auto px-1 overscroll-contain touch-auto" style={{ WebkitOverflowScrolling: 'touch' }}>
+                        <div className="grid grid-cols-2 lg:grid-cols-4 gap-2 md:gap-4 w-full pb-4">
                           {sectors.map((sector) => (
                             <button
                               key={sector.id}
@@ -354,7 +355,7 @@ const MarketelliOfficial = () => {
                         </div>
                       </div>
 
-                      <div className="flex-1 overflow-y-auto px-1 space-y-4 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:'none'] [scrollbar-width:'none']">
+                      <div className="flex-1 overflow-y-auto px-1 space-y-4 overscroll-contain touch-auto pb-20" style={{ WebkitOverflowScrolling: 'touch' }}>
                         <div className="space-y-1">
                           <label className="text-xs md:text-sm text-[#A020F0] font-black tracking-[1px] md:tracking-[2px] uppercase">Nome</label>
                           <input 
