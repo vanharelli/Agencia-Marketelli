@@ -401,10 +401,9 @@ const MarketelliOfficial = () => {
 
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                           <div className="space-y-1">
-                            <label className="text-xs md:text-sm text-[#A020F0] font-black tracking-[1px] md:tracking-[2px] uppercase">Site</label>
+                            <label className="text-xs md:text-sm text-[#A020F0] font-black tracking-[1px] md:tracking-[2px] uppercase">Site <span className="text-gray-500 font-light text-[8px] md:text-[10px]">(Opcional)</span></label>
                             <input 
                               type="url"
-                              required
                               value={formData.website}
                               onChange={(e) => setFormData({...formData, website: e.target.value})}
                               placeholder="www.site.com"
@@ -412,10 +411,9 @@ const MarketelliOfficial = () => {
                             />
                           </div>
                           <div className="space-y-1">
-                            <label className="text-xs md:text-sm text-[#A020F0] font-black tracking-[1px] md:tracking-[2px] uppercase">Instagram</label>
+                            <label className="text-xs md:text-sm text-[#A020F0] font-black tracking-[1px] md:tracking-[2px] uppercase">Instagram <span className="text-gray-500 font-light text-[8px] md:text-[10px]">(Opcional)</span></label>
                             <input 
                               type="text"
-                              required
                               value={formData.instagram}
                               onChange={(e) => setFormData({...formData, instagram: e.target.value})}
                               placeholder="@usuario"
@@ -445,14 +443,14 @@ const MarketelliOfficial = () => {
                       </div>
                       <button 
                         onClick={() => {
-                          if (formData.name && formData.whatsapp && formData.email && formData.website && formData.instagram) {
-                            const msg = `Olá, equipe Marketelli. Aqui é ${formData.name}.\n\nRequisito a implementação de infraestrutura tecnológica para o setor de ${selectedSectorData?.title || 'Alta Performance'}.\n\nDados para análise técnica preliminar:\n\n🏢 Setor: ${selectedSectorData?.title || 'Não especificado'}\n✉️ E-mail Corporativo: ${formData.email}\n📱 Linha Direta: ${formData.whatsapp}\n🌐 Infraestrutura Atual: ${formData.website}\n📸 Presença Digital: ${formData.instagram}\n\n📊 Breve resumo:\n${formData.details || 'Dados reservados para a etapa de auditoria.'}\n\nAguardo o especialista técnico designado.`;
+                          if (formData.name && formData.whatsapp && formData.email) {
+                            const msg = `Olá, equipe Marketelli. Aqui é ${formData.name}.\n\nRequisito a implementação de infraestrutura tecnológica para o setor de ${selectedSectorData?.title || 'Alta Performance'}.\n\nDados para análise técnica preliminar:\n\n🏢 Setor: ${selectedSectorData?.title || 'Não especificado'}\n✉️ E-mail Corporativo: ${formData.email}\n📱 Linha Direta: ${formData.whatsapp}\n🌐 Infraestrutura Atual: ${formData.website || 'Não possui'}\n📸 Presença Digital: ${formData.instagram || 'Não informado'}\n\n📊 Breve resumo:\n${formData.details || 'Dados reservados para a etapa de auditoria.'}\n\nAguardo o especialista técnico designado.`;
                             window.open(`https://wa.me/5561982062229?text=${encodeURIComponent(msg)}`, '_blank');
                             setIsModalOpen(false);
                             setModalStep(1);
                             setFormData({ name: '', whatsapp: '', email: '', website: '', instagram: '', details: '' });
                           } else {
-                            alert('Por favor, preencha todos os campos obrigatórios (Nome, WhatsApp, E-mail, Site e Instagram).');
+                            alert('Por favor, preencha todos os campos obrigatórios (Nome, WhatsApp e E-mail).');
                           }
                         }}
                         className="w-full bg-[#A020F0] hover:bg-[#A020F0]/80 text-white py-4 md:py-5 rounded-xl text-base md:text-lg font-black tracking-[2px] uppercase transition-all shadow-[0_0_20px_rgba(160,32,240,0.3)] hover:shadow-[0_0_30px_rgba(160,32,240,0.5)]"
@@ -563,14 +561,14 @@ const MarketelliOfficial = () => {
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[110%] h-[120%] bg-gradient-to-r from-[#A020F0] via-fuchsia-500 to-[#A020F0] rounded-sm opacity-50 blur-md group-hover:opacity-80 group-hover:blur-lg transition-all duration-500 animate-pulse"></div>
             
             <button 
-              onClick={() => {
-                setModalStep(1);
-                setIsModalOpen(true);
-              }}
-              className="relative w-full sm:w-auto bg-white text-black font-black px-8 md:px-12 py-4 md:py-5 rounded-sm tracking-[2px] md:tracking-[3px] hover:bg-[#A020F0] hover:text-white transition-all duration-500 shadow-[0_0_30px_rgba(160,32,240,0.5)] text-sm md:text-base z-10"
-            >
-              SOLICITAR ANÁLISE
-            </button>
+                  onClick={() => {
+                    setModalStep(1);
+                    setIsModalOpen(true);
+                  }}
+                  className="relative w-full sm:w-auto bg-white text-black font-black px-8 md:px-12 py-4 md:py-5 rounded-lg tracking-[2px] md:tracking-[3px] hover:bg-[#A020F0] hover:text-white transition-all duration-500 shadow-[0_0_30px_rgba(160,32,240,0.5)] text-sm md:text-base z-10 uppercase"
+                >
+                  SOLICITAR ANÁLISE
+                </button>
           </motion.div>
         </motion.div>
       </section>
