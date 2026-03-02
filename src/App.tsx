@@ -402,7 +402,7 @@ const MarketelliOfficial = () => {
                         </div>
                       </div>
 
-                      <div className="flex-1 overflow-y-auto px-1 space-y-4 touch-pan-y overscroll-y-contain pb-20 scrollbar-none [&::-webkit-scrollbar]:hidden [-ms-overflow-style:'none'] [scrollbar-width:'none'] w-full" style={{ WebkitOverflowScrolling: 'touch' }} ref={formScrollRef} onScroll={() => {
+                      <div className="flex-1 overflow-y-auto px-1 space-y-4 pb-20 w-full scrollbar-none [&::-webkit-scrollbar]:hidden [-ms-overflow-style:'none'] [scrollbar-width:'none']" style={{ WebkitOverflowScrolling: 'touch' }} ref={formScrollRef} onScroll={() => {
                         if (formScrollRef.current) {
                           const { scrollTop, scrollHeight, clientHeight } = formScrollRef.current;
                           setShowScrollHint(scrollHeight > clientHeight && scrollTop + clientHeight < scrollHeight - 20);
