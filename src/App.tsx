@@ -347,9 +347,6 @@ const MarketelliOfficial = () => {
                     <div className="flex-1 flex flex-col justify-center overflow-hidden pt-2">
                       <div className="text-center mb-4 md:mb-8 shrink-0">
                         <h3 className="text-xl md:text-3xl font-black tracking-[2px] md:tracking-[4px] text-white uppercase mb-1">Quase lá!</h3>
-                        <p className="text-[#A020F0] text-xs md:text-sm font-bold tracking-[1px] uppercase animate-pulse">
-                          Basta enviar a Mensagem automática gerada no WhatsApp.
-                        </p>
                       </div>
 
                       <div className="space-y-4 overflow-y-auto px-1 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:'none'] [scrollbar-width:'none']">
@@ -440,7 +437,12 @@ const MarketelliOfficial = () => {
                       </div>
                     </div>
 
-                    <div className="flex-none mt-3 md:mt-6">
+                    <div className="flex-none mt-2 md:mt-4">
+                      <div className="text-center mb-2 md:mb-4 px-2">
+                        <p className="text-[#A020F0] text-xs md:text-sm font-bold tracking-[1px] uppercase animate-pulse">
+                          Basta enviar a Mensagem automática gerada no WhatsApp.
+                        </p>
+                      </div>
                       <button 
                         onClick={() => {
                           if (formData.name && formData.whatsapp && formData.email && formData.website && formData.instagram) {
