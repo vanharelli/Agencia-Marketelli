@@ -501,7 +501,7 @@ const MarketelliOfficial = () => {
           opacity: headerOpacity,
           pointerEvents: pointerEvents
         }}
-        className="fixed top-0 w-full p-4 md:p-6 flex justify-between items-center z-50 border-b"
+        className="fixed top-0 w-full p-4 md:p-6 flex justify-between items-center z-50 border-b border-b-[#A020F0]/30"
       >
         <div className="flex w-full justify-between items-center max-w-7xl mx-auto">
           <div className="flex items-center gap-2 md:gap-4">
