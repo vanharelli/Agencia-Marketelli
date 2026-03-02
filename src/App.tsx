@@ -1,9 +1,31 @@
-import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
+import { motion, AnimatePresence, useScroll, useTransform, useInView } from 'framer-motion';
 import { Hotel, Utensils, Instagram, Check, Mail, X, ChevronRight, Plus, ChevronLeft, Star, MessageCircle, Car, ChevronDown } from 'lucide-react';
 import { useState, useEffect, useRef } from 'react';
 import LegalPolicies from './components/LegalPolicies';
 import { useFrontendShield } from './hooks/useFrontendShield';
 import { useDoubleBackExit } from './hooks/useDoubleBackExit';
+
+const PartnerImage = ({ src, alt, name, role }: { src: string, alt: string, name: string, role: string }) => {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { margin: "-20% 0px -20% 0px" });
+
+  return (
+    <div ref={ref} className="w-full relative group flex flex-col items-center">
+      <div className="absolute -inset-4 bg-gradient-to-tr from-[#A020F0]/20 to-[#A020F0]/20 rounded-full blur-3xl opacity-50 group-hover:opacity-100 transition-opacity duration-700"></div>
+      <div className={`relative z-10 aspect-[3/4] w-full overflow-hidden rounded-2xl border transition-colors duration-500 ${isInView ? 'border-[#A020F0]/50' : 'border-white/10 group-hover:border-[#A020F0]/50'}`}>
+        <img 
+          src={src} 
+          alt={alt} 
+          className={`w-full h-full object-cover transition-all duration-700 scale-105 group-hover:scale-100 ${isInView ? 'grayscale-0' : 'grayscale group-hover:grayscale-0'}`}
+        />
+      </div>
+      <div className="mt-4 text-center z-10">
+        <h4 className="text-white font-black tracking-[2px] text-sm uppercase">{name}</h4>
+        <p className="text-[#A020F0] text-[10px] font-bold tracking-[1px] uppercase">{role}</p>
+      </div>
+    </div>
+  );
+};
 
 const MarketelliOfficial = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -745,69 +767,10 @@ const MarketelliOfficial = () => {
 
           {/* Container de Imagens no Meio */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 w-full max-w-4xl mx-auto">
-            {/* Imagem do Lucas */}
-            <div className="w-full relative group flex flex-col items-center">
-              <div className="absolute -inset-4 bg-gradient-to-tr from-[#A020F0]/20 to-[#A020F0]/20 rounded-full blur-3xl opacity-50 group-hover:opacity-100 transition-opacity duration-700"></div>
-              <div className="relative z-10 aspect-[3/4] w-full overflow-hidden rounded-2xl border border-white/10 group-hover:border-[#A020F0]/50 transition-colors duration-500">
-                <img 
-                  src="/lucas.webp" 
-                  alt="Lucas - Marketelli" 
-                  className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700 scale-105 group-hover:scale-100"
-                />
-              </div>
-              <div className="mt-4 text-center z-10">
-                <h4 className="text-white font-black tracking-[2px] text-sm uppercase">LUCAS</h4>
-                <p className="text-[#A020F0] text-[10px] font-bold tracking-[1px] uppercase">Fundador & Estrategista</p>
-              </div>
-            </div>
-
-            {/* Imagem da Monaliza */}
-            <div className="w-full relative group flex flex-col items-center">
-              <div className="absolute -inset-4 bg-gradient-to-tr from-[#A020F0]/20 to-[#A020F0]/20 rounded-full blur-3xl opacity-50 group-hover:opacity-100 transition-opacity duration-700"></div>
-              <div className="relative z-10 aspect-[3/4] w-full overflow-hidden rounded-2xl border border-white/10 group-hover:border-[#A020F0]/50 transition-colors duration-500">
-                <img 
-                  src="/monaliza.webp" 
-                  alt="Monaliza - Marketelli" 
-                  className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700 scale-105 group-hover:scale-100"
-                />
-              </div>
-              <div className="mt-4 text-center z-10">
-                <h4 className="text-white font-black tracking-[2px] text-sm uppercase">MONALIZA</h4>
-                <p className="text-[#A020F0] text-[10px] font-bold tracking-[1px] uppercase">Social Media, Webdesigner e Criativos</p>
-              </div>
-            </div>
-
-            {/* Imagem do Tony */}
-            <div className="w-full relative group flex flex-col items-center">
-              <div className="absolute -inset-4 bg-gradient-to-tr from-[#A020F0]/20 to-[#A020F0]/20 rounded-full blur-3xl opacity-50 group-hover:opacity-100 transition-opacity duration-700"></div>
-              <div className="relative z-10 aspect-[3/4] w-full overflow-hidden rounded-2xl border border-white/10 group-hover:border-[#A020F0]/50 transition-colors duration-500">
-                <img 
-                  src="/tony.webp" 
-                  alt="Tony - Marketelli" 
-                  className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700 scale-105 group-hover:scale-100"
-                />
-              </div>
-              <div className="mt-4 text-center z-10">
-                <h4 className="text-white font-black tracking-[2px] text-sm uppercase">TONY</h4>
-                <p className="text-[#A020F0] text-[10px] font-bold tracking-[1px] uppercase">IA & Programação</p>
-              </div>
-            </div>
-
-            {/* Imagem do Pedro */}
-            <div className="w-full relative group flex flex-col items-center">
-              <div className="absolute -inset-4 bg-gradient-to-tr from-[#A020F0]/20 to-[#A020F0]/20 rounded-full blur-3xl opacity-50 group-hover:opacity-100 transition-opacity duration-700"></div>
-              <div className="relative z-10 aspect-[3/4] w-full overflow-hidden rounded-2xl border border-white/10 group-hover:border-[#A020F0]/50 transition-colors duration-500">
-                <img 
-                  src="/Pedro.webp" 
-                  alt="Pedro - Marketelli" 
-                  className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700 scale-105 group-hover:scale-100"
-                />
-              </div>
-              <div className="mt-4 text-center z-10">
-                <h4 className="text-white font-black tracking-[2px] text-sm uppercase">PEDRO</h4>
-                <p className="text-[#A020F0] text-[10px] font-bold tracking-[1px] uppercase">Tráfego Pago</p>
-              </div>
-            </div>
+            <PartnerImage src="/lucas.webp" alt="Lucas - Marketelli" name="LUCAS" role="Fundador & Estrategista" />
+            <PartnerImage src="/monaliza.webp" alt="Monaliza - Marketelli" name="MONALIZA" role="Social Media, Webdesigner e Criativos" />
+            <PartnerImage src="/tony.webp" alt="Tony - Marketelli" name="TONY" role="IA & Programação" />
+            <PartnerImage src="/Pedro.webp" alt="Pedro - Marketelli" name="PEDRO" role="Tráfego Pago" />
           </div>
 
           {/* Conteúdo Textual Abaixo das Imagens */}
