@@ -959,7 +959,7 @@ const MarketelliOfficial = () => {
               </div>
             </a>
 
-            <a href="https://instagram.com/marktelli_" target="_blank" rel="noopener noreferrer" className="group flex items-center gap-2 text-gray-300 hover:text-white transition-all duration-300">
+            <a href="https://instagram.com/marketelli_" target="_blank" rel="noopener noreferrer" className="group flex items-center gap-2 text-gray-300 hover:text-white transition-all duration-300">
               <span className="text-[10px] font-bold tracking-[1px] text-right">Instagram</span>
               <div className="w-6 h-6 rounded-full bg-gradient-to-br from-[#f09433] via-[#e6683c] to-[#bc1888] flex items-center justify-center shadow-[0_2px_8px_rgba(230,104,60,0.3)] border border-white/20">
                 <Instagram size={11} className="text-white" />
