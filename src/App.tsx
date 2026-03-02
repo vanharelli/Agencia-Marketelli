@@ -335,37 +335,39 @@ const MarketelliOfficial = () => {
                     exit={{ opacity: 0, x: -20 }}
                     className="flex flex-col h-full"
                   >
-                    <button 
-                      onClick={() => setModalStep(1)}
-                      className="absolute top-3 left-3 flex items-center gap-1 text-[#A020F0] text-[9px] font-bold uppercase tracking-[1px] hover:text-white transition-colors z-50"
-                    >
-                      <ChevronLeft size={12} /> Voltar
-                    </button>
+                    <div className="flex-none mb-2 md:mb-4">
+                      <button 
+                        onClick={() => setModalStep(1)}
+                        className="flex items-center gap-1 md:gap-2 text-[#A020F0] text-sm md:text-base font-bold uppercase tracking-[1px] md:tracking-[2px] hover:text-white transition-colors"
+                      >
+                        <ChevronLeft size={18} className="md:w-6 md:h-6" /> Voltar
+                      </button>
+                    </div>
 
                     <div className="flex-1 flex flex-col justify-center overflow-hidden pt-2">
-                      <div className="text-center mb-1 shrink-0">
-                        <h3 className="text-base font-black tracking-[2px] text-white uppercase mb-0">Quase lá!</h3>
-                        <p className="text-[#A020F0] text-[7px] font-bold tracking-[1px] uppercase animate-pulse">
+                      <div className="text-center mb-4 md:mb-8 shrink-0">
+                        <h3 className="text-xl md:text-3xl font-black tracking-[2px] md:tracking-[4px] text-white uppercase mb-1">Quase lá!</h3>
+                        <p className="text-[#A020F0] text-xs md:text-sm font-bold tracking-[1px] uppercase animate-pulse">
                           Basta enviar a Mensagem automática gerada no WhatsApp.
                         </p>
                       </div>
 
-                      <div className="space-y-1 overflow-y-auto px-1 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:'none'] [scrollbar-width:'none']">
-                        <div className="space-y-0">
-                          <label className="text-[7px] text-[#A020F0] font-black tracking-[1px] uppercase">Nome</label>
+                      <div className="space-y-4 overflow-y-auto px-1 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:'none'] [scrollbar-width:'none']">
+                        <div className="space-y-1">
+                          <label className="text-xs md:text-sm text-[#A020F0] font-black tracking-[1px] md:tracking-[2px] uppercase">Nome</label>
                           <input 
                             type="text"
                             required
                             value={formData.name}
                             onChange={(e) => setFormData({...formData, name: e.target.value})}
                             placeholder="Seu nome"
-                            className="w-full bg-black/50 border border-white/10 rounded px-2 py-0 text-[9px] text-white focus:outline-none focus:border-[#A020F0] transition-colors placeholder:text-gray-600 h-5 md:h-6"
+                            className="w-full bg-black/50 border border-white/10 rounded-lg px-4 py-3 md:px-5 md:py-4 text-base md:text-lg text-white focus:outline-none focus:border-[#A020F0] transition-colors placeholder:text-gray-600 h-12 md:h-14"
                           />
                         </div>
 
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-1">
-                          <div className="space-y-0">
-                            <label className="text-[7px] text-[#A020F0] font-black tracking-[1px] uppercase">WhatsApp</label>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                          <div className="space-y-1">
+                            <label className="text-xs md:text-sm text-[#A020F0] font-black tracking-[1px] md:tracking-[2px] uppercase">WhatsApp</label>
                             <input 
                               type="tel"
                               required
@@ -384,61 +386,61 @@ const MarketelliOfficial = () => {
                                 setFormData({...formData, whatsapp: formatted});
                               }}
                               placeholder="(00) 00000-0000"
-                              className="w-full bg-black/50 border border-white/10 rounded px-2 py-0 text-[9px] text-white focus:outline-none focus:border-[#A020F0] transition-colors placeholder:text-gray-600 h-5 md:h-6"
+                              className="w-full bg-black/50 border border-white/10 rounded-lg px-4 py-3 md:px-5 md:py-4 text-base md:text-lg text-white focus:outline-none focus:border-[#A020F0] transition-colors placeholder:text-gray-600 h-12 md:h-14"
                             />
                           </div>
-                          <div className="space-y-0">
-                            <label className="text-[7px] text-[#A020F0] font-black tracking-[1px] uppercase">E-mail</label>
+                          <div className="space-y-1">
+                            <label className="text-xs md:text-sm text-[#A020F0] font-black tracking-[1px] md:tracking-[2px] uppercase">E-mail</label>
                             <input 
                               type="email"
                               required
                               value={formData.email}
                               onChange={(e) => setFormData({...formData, email: e.target.value})}
                               placeholder="seu@email.com"
-                              className="w-full bg-black/50 border border-white/10 rounded px-2 py-0 text-[9px] text-white focus:outline-none focus:border-[#A020F0] transition-colors placeholder:text-gray-600 h-5 md:h-6"
+                              className="w-full bg-black/50 border border-white/10 rounded-lg px-4 py-3 md:px-5 md:py-4 text-base md:text-lg text-white focus:outline-none focus:border-[#A020F0] transition-colors placeholder:text-gray-600 h-12 md:h-14"
                             />
                           </div>
                         </div>
 
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-1">
-                          <div className="space-y-0">
-                            <label className="text-[7px] text-[#A020F0] font-black tracking-[1px] uppercase">Site</label>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                          <div className="space-y-1">
+                            <label className="text-xs md:text-sm text-[#A020F0] font-black tracking-[1px] md:tracking-[2px] uppercase">Site</label>
                             <input 
                               type="url"
                               required
                               value={formData.website}
                               onChange={(e) => setFormData({...formData, website: e.target.value})}
                               placeholder="www.site.com"
-                              className="w-full bg-black/50 border border-white/10 rounded px-2 py-0 text-[9px] text-white focus:outline-none focus:border-[#A020F0] transition-colors placeholder:text-gray-600 h-5 md:h-6"
+                              className="w-full bg-black/50 border border-white/10 rounded-lg px-4 py-3 md:px-5 md:py-4 text-base md:text-lg text-white focus:outline-none focus:border-[#A020F0] transition-colors placeholder:text-gray-600 h-12 md:h-14"
                             />
                           </div>
-                          <div className="space-y-0">
-                            <label className="text-[7px] text-[#A020F0] font-black tracking-[1px] uppercase">Instagram</label>
+                          <div className="space-y-1">
+                            <label className="text-xs md:text-sm text-[#A020F0] font-black tracking-[1px] md:tracking-[2px] uppercase">Instagram</label>
                             <input 
                               type="text"
                               required
                               value={formData.instagram}
                               onChange={(e) => setFormData({...formData, instagram: e.target.value})}
                               placeholder="@usuario"
-                              className="w-full bg-black/50 border border-white/10 rounded px-2 py-0 text-[9px] text-white focus:outline-none focus:border-[#A020F0] transition-colors placeholder:text-gray-600 h-5 md:h-6"
+                              className="w-full bg-black/50 border border-white/10 rounded-lg px-4 py-3 md:px-5 md:py-4 text-base md:text-lg text-white focus:outline-none focus:border-[#A020F0] transition-colors placeholder:text-gray-600 h-12 md:h-14"
                             />
                           </div>
                         </div>
 
-                        <div className="space-y-0">
-                          <label className="text-[7px] text-[#A020F0] font-black tracking-[1px] uppercase">Detalhes</label>
+                        <div className="space-y-1">
+                          <label className="text-xs md:text-sm text-[#A020F0] font-black tracking-[1px] md:tracking-[2px] uppercase">Detalhes</label>
                           <textarea 
                             rows={2}
                             value={formData.details}
                             onChange={(e) => setFormData({...formData, details: e.target.value})}
                             placeholder="Breve descrição..."
-                            className="w-full bg-black/50 border border-white/10 rounded px-2 py-0 text-[9px] text-white focus:outline-none focus:border-[#A020F0] transition-colors resize-none placeholder:text-gray-600"
+                            className="w-full bg-black/50 border border-white/10 rounded-lg px-4 py-3 md:px-5 md:py-4 text-base md:text-lg text-white focus:outline-none focus:border-[#A020F0] transition-colors resize-none placeholder:text-gray-600"
                           />
                         </div>
                       </div>
                     </div>
 
-                    <div className="flex-none mt-0">
+                    <div className="flex-none mt-3 md:mt-6">
                       <button 
                         onClick={() => {
                           if (formData.name && formData.whatsapp && formData.email && formData.website && formData.instagram) {
@@ -451,7 +453,7 @@ const MarketelliOfficial = () => {
                             alert('Por favor, preencha todos os campos obrigatórios (Nome, WhatsApp, E-mail, Site e Instagram).');
                           }
                         }}
-                        className="w-full bg-[#A020F0] hover:bg-[#A020F0]/80 text-white py-3 rounded-lg text-xs md:text-sm font-black tracking-[2px] uppercase transition-all shadow-[0_0_20px_rgba(160,32,240,0.3)] hover:shadow-[0_0_30px_rgba(160,32,240,0.5)]"
+                        className="w-full bg-[#A020F0] hover:bg-[#A020F0]/80 text-white py-4 md:py-5 rounded-xl text-base md:text-lg font-black tracking-[2px] uppercase transition-all shadow-[0_0_20px_rgba(160,32,240,0.3)] hover:shadow-[0_0_30px_rgba(160,32,240,0.5)]"
                       >
                         SOLICITAR ANÁLISE
                       </button>
