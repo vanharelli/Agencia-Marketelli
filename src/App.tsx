@@ -6,10 +6,10 @@ import { useFrontendShield } from './hooks/useFrontendShield';
 import { useDoubleBackExit } from './hooks/useDoubleBackExit';
 
 const MarketelliOfficial = () => {
-  useFrontendShield();
-  useDoubleBackExit();
-  const [currentPage, setCurrentPage] = useState<'home' | 'policies'>('home');
   const [isModalOpen, setIsModalOpen] = useState(false);
+  useFrontendShield();
+  useDoubleBackExit(isModalOpen, () => setIsModalOpen(false));
+  const [currentPage, setCurrentPage] = useState<'home' | 'policies'>('home');
 
   useEffect(() => {
     window.scrollTo(0, 0);
