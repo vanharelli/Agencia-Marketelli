@@ -260,15 +260,15 @@ const MarketelliOfficial = () => {
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 1, x: 0 }}
                     exit={{ opacity: 0, x: 20 }}
-                    className="flex flex-col h-full justify-center overflow-hidden"
+                    className="flex flex-col justify-center overflow-hidden"
                   >
-                    <div className="flex-1 flex flex-col overflow-hidden pt-2">
+                    <div className="flex-none pt-2">
                       <div className="text-center mb-2 md:mb-6 shrink-0">
                         <h3 className="text-lg md:text-2xl font-black tracking-[3px] text-white uppercase mb-1">Qual setor você atua?</h3>
                         <p className="text-gray-400 text-xs md:text-sm tracking-[1px]">Selecione o pilar que vamos transformar em ativo.</p>
                       </div>
 
-                      <div className="flex-1 overflow-y-auto px-1 overscroll-contain touch-auto" style={{ WebkitOverflowScrolling: 'touch' }}>
+                      <div className="overflow-y-auto px-1 overscroll-contain touch-auto" style={{ WebkitOverflowScrolling: 'touch' }}>
                         <div className="grid grid-cols-2 lg:grid-cols-4 gap-2 md:gap-4 w-full pb-4">
                           {sectors.map((sector) => (
                             <button
