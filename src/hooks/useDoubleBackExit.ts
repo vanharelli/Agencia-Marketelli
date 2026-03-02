@@ -16,7 +16,7 @@ export function useDoubleBackExit(isModalOpen: boolean, closeModal: () => void) 
     // Push initial state to trap the first back navigation
     window.history.pushState({ preventExit: true }, '');
 
-    const handlePopState = (event: PopStateEvent) => {
+    const handlePopState = () => {
       // Se o modal estiver aberto, fecha o modal e impede a saída
       if (isModalOpenRef.current) {
         // Impede a navegação de voltar padrão (que sairia da página ou voltaria no histórico)
