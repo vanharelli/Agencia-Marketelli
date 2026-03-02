@@ -344,12 +344,17 @@ const MarketelliOfficial = () => {
                       </button>
                     </div>
 
-                    <div className="flex-1 flex flex-col justify-center overflow-hidden pt-2">
-                      <div className="text-center mb-4 md:mb-8 shrink-0">
+                    <div className="flex-1 flex flex-col overflow-hidden pt-2">
+                      <div className="text-center mb-4 md:mb-6 shrink-0">
                         <h3 className="text-xl md:text-3xl font-black tracking-[2px] md:tracking-[4px] text-white uppercase mb-1">Quase lá!</h3>
+                        <div className="inline-block bg-[#A020F0]/10 border border-[#A020F0]/30 rounded px-3 py-1 mb-2">
+                          <p className="text-[#A020F0] text-xs md:text-sm font-black tracking-[2px] uppercase">
+                            {selectedSectorData?.title}
+                          </p>
+                        </div>
                       </div>
 
-                      <div className="space-y-4 overflow-y-auto px-1 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:'none'] [scrollbar-width:'none']">
+                      <div className="flex-1 overflow-y-auto px-1 space-y-4 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:'none'] [scrollbar-width:'none']">
                         <div className="space-y-1">
                           <label className="text-xs md:text-sm text-[#A020F0] font-black tracking-[1px] md:tracking-[2px] uppercase">Nome</label>
                           <input 
