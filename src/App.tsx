@@ -1,6 +1,6 @@
 import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
-import { Hotel, Utensils, Instagram, Check, Mail, X, ChevronRight, Plus, ChevronLeft, Star, MessageCircle, Car } from 'lucide-react';
-import { useState, useEffect } from 'react';
+import { Hotel, Utensils, Instagram, Check, Mail, X, ChevronRight, Plus, ChevronLeft, Star, MessageCircle, Car, ChevronDown } from 'lucide-react';
+import { useState, useEffect, useRef } from 'react';
 import LegalPolicies from './components/LegalPolicies';
 import { useFrontendShield } from './hooks/useFrontendShield';
 import { useDoubleBackExit } from './hooks/useDoubleBackExit';
@@ -28,6 +28,31 @@ const MarketelliOfficial = () => {
   const [otherSector, setOtherSector] = useState('');
   const [activeComment, setActiveComment] = useState(0);
   const { scrollY } = useScroll();
+  const formScrollRef = useRef<HTMLDivElement>(null);
+  const [showScrollHint, setShowScrollHint] = useState(false);
+
+  useEffect(() => {
+    const checkScroll = () => {
+      if (formScrollRef.current) {
+        const { scrollTop, scrollHeight, clientHeight } = formScrollRef.current;
+        // Show hint if there is scrollable content and we are not at the bottom
+        setShowScrollHint(scrollHeight > clientHeight && scrollTop + clientHeight < scrollHeight - 20);
+      }
+    };
+
+    const scrollElement = formScrollRef.current;
+    if (scrollElement) {
+      scrollElement.addEventListener('scroll', checkScroll);
+      // Check initially
+      checkScroll();
+    }
+
+    return () => {
+      if (scrollElement) {
+        scrollElement.removeEventListener('scroll', checkScroll);
+      }
+    };
+  }, [modalStep, isModalOpen]);
 
   const liveComments = [
     { 
@@ -262,7 +287,7 @@ const MarketelliOfficial = () => {
                     exit={{ opacity: 0, x: 20 }}
                     className="flex flex-col justify-center overflow-hidden"
                   >
-                    <div className="flex-none pt-2">
+                    <div className="flex-none pt-2 pb-0">
                       <div className="text-center mb-2 md:mb-6 shrink-0">
                         <h3 className="text-lg md:text-2xl font-black tracking-[3px] text-white uppercase mb-1">Qual setor você atua?</h3>
                         <p className="text-gray-400 text-xs md:text-sm tracking-[1px]">Selecione o pilar que vamos transformar em ativo.</p>
@@ -284,8 +309,8 @@ const MarketelliOfficial = () => {
                               }}
                               className="w-full group relative flex flex-row sm:flex-col items-center gap-3 md:gap-2 p-3 md:p-3 bg-white/5 border border-white/10 rounded-xl hover:border-[#A020F0] transition-all duration-300 text-left sm:text-center animate-pulse-neon h-auto justify-start sm:justify-center"
                             >
-                              <div className="w-10 h-10 md:w-10 md:h-10 bg-black border border-[#A020F0]/30 rounded-full flex items-center justify-center group-hover:bg-[#A020F0]/10 transition-colors shrink-0">
-                                <div className="scale-90">
+                              <div className="w-8 h-8 md:w-10 md:h-10 bg-black border border-[#A020F0]/30 rounded-full flex items-center justify-center group-hover:bg-[#A020F0]/10 transition-colors shrink-0">
+                                <div className="scale-75 md:scale-90">
                                   {sector.icon}
                                 </div>
                               </div>
@@ -355,7 +380,12 @@ const MarketelliOfficial = () => {
                         </div>
                       </div>
 
-                      <div className="flex-1 overflow-y-auto px-1 space-y-4 touch-pan-y overscroll-y-contain pb-20 scrollbar-none [&::-webkit-scrollbar]:hidden [-ms-overflow-style:'none'] [scrollbar-width:'none']" style={{ WebkitOverflowScrolling: 'touch' }}>
+                      <div className="flex-1 overflow-y-auto px-1 space-y-4 touch-pan-y overscroll-y-contain pb-20 scrollbar-none [&::-webkit-scrollbar]:hidden [-ms-overflow-style:'none'] [scrollbar-width:'none']" style={{ WebkitOverflowScrolling: 'touch' }} ref={formScrollRef} onScroll={() => {
+                        if (formScrollRef.current) {
+                          const { scrollTop, scrollHeight, clientHeight } = formScrollRef.current;
+                          setShowScrollHint(scrollHeight > clientHeight && scrollTop + clientHeight < scrollHeight - 20);
+                        }
+                      }}>
                         <div className="space-y-1">
                           <label className="text-xs md:text-sm text-[#A020F0] font-black tracking-[1px] md:tracking-[2px] uppercase">Nome</label>
                           <input 
@@ -441,7 +471,19 @@ const MarketelliOfficial = () => {
                       </div>
                     </div>
 
-                    <div className="flex-none mt-2 md:mt-4">
+                    <div className="flex-none mt-2 md:mt-4 relative">
+                      <AnimatePresence>
+                        {showScrollHint && (
+                          <motion.div 
+                            initial={{ opacity: 0, y: -10 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            exit={{ opacity: 0, y: -10 }}
+                            className="absolute -top-8 left-0 right-0 flex justify-center pointer-events-none"
+                          >
+                            <ChevronDown className="text-[#A020F0] animate-bounce" size={24} />
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
                       <div className="text-center mb-2 md:mb-4 px-2">
                         <p className="text-[#A020F0] text-xs md:text-sm font-bold tracking-[1px] uppercase animate-pulse">
                           Basta enviar a Mensagem automática gerada no WhatsApp.
