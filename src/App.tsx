@@ -163,7 +163,7 @@ const MarketelliOfficial = () => {
   const headerBorder = useTransform(
     scrollY,
     [0, 100],
-    ["rgba(255, 255, 255, 0)", "rgba(255, 255, 255, 0.05)"]
+    ["rgba(160, 32, 240, 0)", "rgba(160, 32, 240, 0.3)"]
   );
 
   const headerOpacity = useTransform(scrollY, [0, 50], [0, 1]);
