@@ -286,7 +286,7 @@ const MarketelliOfficial = () => {
               initial={{ scale: 0.9, opacity: 0, y: 20 }}
               animate={{ scale: 1, opacity: 1, y: 0 }}
               exit={{ scale: 0.9, opacity: 0, y: 20 }}
-              className="relative w-full max-w-4xl bg-white/5 backdrop-blur-3xl border border-[#A020F0]/30 rounded-2xl p-4 md:p-6 shadow-[0_0_50px_rgba(160,32,240,0.3)] h-[85dvh] md:h-auto max-h-[90dvh] flex flex-col overflow-hidden overscroll-y-contain"
+              className={`relative w-full max-w-4xl bg-white/5 backdrop-blur-3xl border border-[#A020F0]/30 rounded-2xl p-4 md:p-6 shadow-[0_0_50px_rgba(160,32,240,0.3)] flex flex-col overflow-hidden overscroll-y-contain ${modalStep === 1 ? 'h-auto max-h-[90dvh]' : 'h-[85dvh] md:h-auto max-h-[90dvh]'}`}
               onClick={(e) => e.stopPropagation()}
             >
               <button 
