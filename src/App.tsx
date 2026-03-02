@@ -3,9 +3,11 @@ import { Hotel, Utensils, Instagram, Check, Mail, X, ChevronRight, Plus, Chevron
 import { useState, useEffect } from 'react';
 import LegalPolicies from './components/LegalPolicies';
 import { useFrontendShield } from './hooks/useFrontendShield';
+import { useDoubleBackExit } from './hooks/useDoubleBackExit';
 
 const MarketelliOfficial = () => {
   useFrontendShield();
+  useDoubleBackExit();
   const [currentPage, setCurrentPage] = useState<'home' | 'policies'>('home');
   const [isModalOpen, setIsModalOpen] = useState(false);
 
