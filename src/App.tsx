@@ -355,7 +355,7 @@ const MarketelliOfficial = () => {
                         </div>
                       </div>
 
-                      <div className="flex-1 overflow-y-auto px-1 space-y-4 overscroll-contain touch-auto pb-20" style={{ WebkitOverflowScrolling: 'touch' }}>
+                      <div className="flex-1 overflow-y-auto px-1 space-y-4 overscroll-contain touch-auto pb-20 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:'none'] [scrollbar-width:'none']" style={{ WebkitOverflowScrolling: 'touch' }}>
                         <div className="space-y-1">
                           <label className="text-xs md:text-sm text-[#A020F0] font-black tracking-[1px] md:tracking-[2px] uppercase">Nome</label>
                           <input 
@@ -459,7 +459,7 @@ const MarketelliOfficial = () => {
                             alert('Por favor, preencha todos os campos obrigatórios (Nome, WhatsApp e E-mail).');
                           }
                         }}
-                        className="w-full bg-[#A020F0] hover:bg-[#A020F0]/80 text-white py-4 md:py-5 rounded-xl text-base md:text-lg font-black tracking-[2px] uppercase transition-all shadow-[0_0_20px_rgba(160,32,240,0.3)] hover:shadow-[0_0_30px_rgba(160,32,240,0.5)]"
+                        className="w-full bg-[#A020F0] hover:bg-[#A020F0]/80 text-white py-3 md:py-4 rounded-lg text-sm md:text-base font-black tracking-[2px] uppercase transition-all shadow-[0_0_20px_rgba(160,32,240,0.3)] hover:shadow-[0_0_30px_rgba(160,32,240,0.5)]"
                       >
                         SOLICITAR ANÁLISE
                       </button>
