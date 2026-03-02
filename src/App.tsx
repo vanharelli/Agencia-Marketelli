@@ -269,7 +269,7 @@ const MarketelliOfficial = () => {
                       </div>
 
                       <div className="overflow-y-auto px-1 overscroll-contain touch-auto" style={{ WebkitOverflowScrolling: 'touch' }}>
-                        <div className="grid grid-cols-2 lg:grid-cols-4 gap-2 md:gap-4 w-full pb-4">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2 md:gap-4 w-full pb-4">
                           {sectors.map((sector) => (
                             <button
                               key={sector.id}
@@ -282,18 +282,18 @@ const MarketelliOfficial = () => {
                                   setModalStep(2);
                                 }
                               }}
-                              className="w-full group relative flex flex-col items-center gap-2 p-2 md:p-3 bg-white/5 border border-white/10 rounded-xl hover:border-[#A020F0] transition-all duration-300 text-center animate-pulse-neon h-auto justify-center"
+                              className="w-full group relative flex flex-row sm:flex-col items-center gap-3 md:gap-2 p-3 md:p-3 bg-white/5 border border-white/10 rounded-xl hover:border-[#A020F0] transition-all duration-300 text-left sm:text-center animate-pulse-neon h-auto justify-start sm:justify-center"
                             >
-                              <div className="w-8 h-8 md:w-10 md:h-10 bg-black border border-[#A020F0]/30 rounded-full flex items-center justify-center group-hover:bg-[#A020F0]/10 transition-colors shrink-0">
-                                <div className="scale-75 md:scale-90">
+                              <div className="w-10 h-10 md:w-10 md:h-10 bg-black border border-[#A020F0]/30 rounded-full flex items-center justify-center group-hover:bg-[#A020F0]/10 transition-colors shrink-0">
+                                <div className="scale-90">
                                   {sector.icon}
                                 </div>
                               </div>
                               <div className="flex-1 flex flex-col justify-center w-full">
-                                <h4 className="text-white text-[10px] md:text-sm font-bold tracking-[1px] md:tracking-[2px] uppercase mb-0.5 line-clamp-1">{sector.title}</h4>
-                                <p className="text-gray-400 text-[7px] md:text-[9px] font-light leading-tight line-clamp-2 w-full">{sector.desc}</p>
+                                <h4 className="text-white text-xs md:text-sm font-bold tracking-[1px] md:tracking-[2px] uppercase mb-0.5 line-clamp-1">{sector.title}</h4>
+                                <p className="text-gray-400 text-[8px] md:text-[9px] font-light leading-tight line-clamp-2 w-full">{sector.desc}</p>
                               </div>
-                              <ChevronRight className="absolute right-1 top-1/2 -translate-y-1/2 text-gray-600 group-hover:text-[#A020F0] transition-colors opacity-0 group-hover:opacity-100 hidden md:block" size={14} />
+                              <ChevronRight className="text-gray-600 group-hover:text-[#A020F0] transition-colors opacity-100 sm:opacity-0 sm:group-hover:opacity-100 sm:absolute sm:right-1 sm:top-1/2 sm:-translate-y-1/2" size={16} />
                             </button>
                           ))}
                         </div>
