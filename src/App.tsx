@@ -618,7 +618,11 @@ const MarketelliOfficial = () => {
           className="w-full max-w-5xl"
         >
           <h1 className="text-3xl sm:text-4xl md:text-6xl font-black mb-6 tracking-tighter leading-[1.1] md:leading-none relative drop-shadow-[0_10px_10px_rgba(0,0,0,0.5)] uppercase">
-            <span className="text-metallic-3d">CONSTRUÍMOS SEU <br/> IMPÉRIO DIGITAL.</span>
+            <div className="text-metallic-3d">
+              <span className="glitch-4 inline-block" data-text="CONSTRUÍMOS SEU">CONSTRUÍMOS SEU</span>
+              <br/>
+              <span className="glitch-4 inline-block" data-text="IMPÉRIO DIGITAL.">IMPÉRIO DIGITAL.</span>
+            </div>
           </h1>
           
           <p className="text-[#A020F0] text-[10px] sm:text-sm md:text-lg font-bold tracking-[3px] md:tracking-[6px] uppercase mb-6 md:mb-8">

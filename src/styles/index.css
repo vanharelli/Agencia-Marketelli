@@ -40,33 +40,10 @@ img, video {
 }
 
 .text-metallic-3d {
-  background: linear-gradient(
-    to bottom,
-    #ffffff 0%,
-    #e5e4e2 20%,
-    #ffffff 45%,
-    #a1a1a1 50%,
-    #ffffff 55%,
-    #e5e4e2 80%,
-    #ffffff 100%
-  );
-  background-size: 100% 200%;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: #ffffff;
   filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.9));
   padding: 0.1em 0;
   margin: -0.1em 0;
-  /* Camadas de sombra para efeito 3D profundo */
-  text-shadow: 
-    0 1px 0 #fff, 
-    0 2px 0 #eee, 
-    0 3px 0 #ddd, 
-    0 4px 0 #ccc, 
-    0 5px 0 #bbb, 
-    0 6px 0 #aaa, 
-    0 7px 0 #999, 
-    0 8px 0 #888,
-    0 10px 10px rgba(0,0,0,0.5);
 }
 
 @keyframes pulse-neon-text {
@@ -162,4 +139,60 @@ img, video {
       transform: translate(-2px, 2px);
     }
   }
+}
+
+/* Custom Glitch Effect - Suave */
+.glitch-4 {
+  position: relative;
+  /* Remover overrides de cor/fonte para tentar manter o estilo original onde possível,
+     mas o text-shadow vai sobrescrever. */
+  
+  /* Suavizado: duração maior, deslocamento menor */
+  animation: glitch-4-anim 3s infinite alternate;
+}
+
+@keyframes glitch-4-anim {
+  0%, 100% {
+    text-shadow: 
+      3px 3px 0 rgba(255, 0, 0, 0.7), 
+      -3px -3px 0 rgba(0, 255, 255, 0.7);
+  }
+  25% {
+    text-shadow: 
+      -3px 3px 0 rgba(255, 0, 0, 0.7), 
+      3px -3px 0 rgba(0, 255, 255, 0.7);
+  }
+  50% {
+    text-shadow: 
+      3px -3px 0 rgba(255, 0, 0, 0.7), 
+      -3px 3px 0 rgba(0, 255, 255, 0.7);
+  }
+  75% {
+    text-shadow: 
+      -3px -3px 0 rgba(255, 0, 0, 0.7), 
+      3px 3px 0 rgba(0, 255, 255, 0.7);
+  }
+}
+
+.glitch-4::before {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  
+  /* Cor verde do glitch mais forte */
+  color: rgba(0, 255, 0, 0.7);
+  mix-blend-mode: screen;
+  
+  /* Animação mais rápida e intensa */
+  animation: glitch-4-slide 3s infinite ease-in-out alternate;
+  opacity: 0; 
+  z-index: -1;
+}
+
+@keyframes glitch-4-slide {
+  0%, 100% { transform: translate(0, 0); opacity: 0; }
+  45%, 55% { transform: translate(-5px, 0); opacity: 0.8; } /* Deslocamento maior e mais opaco */
 }
