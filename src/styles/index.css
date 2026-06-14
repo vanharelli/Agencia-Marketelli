@@ -181,18 +181,147 @@ img, video {
   left: 0;
   width: 100%;
   height: 100%;
-  
+
   /* Cor verde do glitch mais forte */
   color: rgba(0, 255, 0, 0.7);
   mix-blend-mode: screen;
-  
+
   /* Animação mais rápida e intensa */
   animation: glitch-4-slide 3s infinite ease-in-out alternate;
-  opacity: 0; 
+  opacity: 0;
   z-index: -1;
 }
 
 @keyframes glitch-4-slide {
   0%, 100% { transform: translate(0, 0); opacity: 0; }
   45%, 55% { transform: translate(-5px, 0); opacity: 0.8; } /* Deslocamento maior e mais opaco */
+}
+
+/* ============================================================
+   REDESIGN 2026 — Awwwards Experience Layer
+   ============================================================ */
+
+/* --- Custom Cursor --- */
+html.has-custom-cursor,
+html.has-custom-cursor * { cursor: none !important; }
+
+.cursor-dot {
+  position: fixed; top: 0; left: 0;
+  width: 6px; height: 6px; margin: -3px 0 0 -3px;
+  border-radius: 50%; background: #fff;
+  pointer-events: none; z-index: 9999;
+  mix-blend-mode: difference;
+}
+.cursor-ring {
+  position: fixed; top: 0; left: 0;
+  width: 34px; height: 34px;
+  border: 1px solid rgba(160, 32, 240, 0.9);
+  border-radius: 50%;
+  pointer-events: none; z-index: 9998;
+  transition: opacity 0.3s ease;
+  box-shadow: 0 0 18px rgba(160, 32, 240, 0.35);
+}
+@media (pointer: coarse) {
+  .cursor-dot, .cursor-ring { display: none; }
+}
+
+/* --- Aurora / mesh background --- */
+.aurora {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(110px);
+  opacity: 0.45;
+  will-change: transform;
+}
+.aurora-1 {
+  width: 50vw; height: 50vw;
+  top: -10%; left: -10%;
+  background: radial-gradient(circle, rgba(160, 32, 240, 0.55), transparent 65%);
+  animation: aurora-float-1 22s ease-in-out infinite;
+}
+.aurora-2 {
+  width: 45vw; height: 45vw;
+  bottom: -15%; right: -10%;
+  background: radial-gradient(circle, rgba(120, 40, 200, 0.4), transparent 65%);
+  animation: aurora-float-2 28s ease-in-out infinite;
+}
+@keyframes aurora-float-1 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(20vw, 15vh) scale(1.25); }
+}
+@keyframes aurora-float-2 {
+  0%, 100% { transform: translate(0, 0) scale(1.1); }
+  50% { transform: translate(-15vw, -10vh) scale(0.85); }
+}
+
+/* --- Grid overlay --- */
+.grid-overlay {
+  background-image:
+    linear-gradient(to right, rgba(160, 32, 240, 0.5) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(160, 32, 240, 0.5) 1px, transparent 1px);
+  background-size: 60px 60px;
+  mask-image: radial-gradient(ellipse at center, black 30%, transparent 75%);
+  -webkit-mask-image: radial-gradient(ellipse at center, black 30%, transparent 75%);
+}
+
+/* --- Desktop nav link underline --- */
+.nav-link {
+  position: relative;
+  padding-bottom: 2px;
+}
+.nav-link::after {
+  content: '';
+  position: absolute;
+  left: 0; bottom: 0;
+  width: 100%; height: 1px;
+  background: #A020F0;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.35s ease;
+}
+.nav-link:hover::after { transform: scaleX(1); transform-origin: left; }
+
+/* --- Marquee --- */
+.marquee {
+  animation: marquee-scroll 32s linear infinite;
+  width: max-content;
+}
+.marquee:hover { animation-play-state: paused; }
+@keyframes marquee-scroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+/* --- Tilt card glow (follows cursor) --- */
+.tilt-card { position: relative; transform-style: preserve-3d; }
+.card-glow {
+  position: absolute; inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(380px circle at var(--mx, 50%) var(--my, 50%), rgba(160, 32, 240, 0.18), transparent 60%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+}
+.tilt-card:hover .card-glow { opacity: 1; }
+
+/* --- Footer wordmark: spotlight roxo seguindo o cursor (mesmo efeito dos cards) --- */
+.footer-word-glow {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle 240px at var(--mx, 50%) var(--my, 50%),
+    rgba(209, 140, 255, 0.95), rgba(160, 32, 240, 0.45) 35%, transparent 62%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+}
+.footer-word:hover .footer-word-glow { opacity: 1; }
+
+@media (prefers-reduced-motion: reduce) {
+  /* .marquee fica de fora: o movimento horizontal contínuo é intencional e foi pedido. */
+  .aurora, .animate-glow-pulse, .animate-pulse-neon,
+  .animate-pulse-neon-text, .glitch-4 { animation: none !important; }
 }
