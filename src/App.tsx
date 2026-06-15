@@ -533,9 +533,16 @@ const MarketelliOfficial = () => {
               Ver soluções <ChevronDown size={16} />
             </button>
           </div>
+
+          {/* Dica de scroll — abaixo de "Ver soluções" (apenas no mobile) */}
+          <button onClick={() => goTo('setores')} className="hero-anim flex md:hidden flex-col items-center gap-1.5 mt-12 mx-auto text-gray-500" aria-label="Role para ver">
+            <span className="text-[9px] tracking-[3px] uppercase">Role para ver</span>
+            <ChevronDown className="animate-bounce text-[#A020F0]" size={22} />
+          </button>
         </div>
 
-        <div className="hero-anim absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-gray-600">
+        {/* Dica de scroll fixa no rodapé do hero (apenas no desktop) */}
+        <div className="hero-anim absolute bottom-6 left-1/2 -translate-x-1/2 hidden md:flex flex-col items-center gap-2 text-gray-600">
           <span className="text-[8px] tracking-[3px] uppercase">Role para ver</span>
           <div className="w-px h-10 bg-gradient-to-b from-[#A020F0] to-transparent" />
         </div>
