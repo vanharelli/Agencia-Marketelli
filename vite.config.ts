@@ -13,6 +13,7 @@ export default defineConfig({
       output: {
         manualChunks: {
           three: ['three'],
+          spline: ['@splinetool/runtime'],
           gsap: ['gsap', 'lenis'],
           motion: ['framer-motion'],
           react: ['react', 'react-dom'],

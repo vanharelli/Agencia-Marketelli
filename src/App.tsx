@@ -4,7 +4,7 @@ import {
   Star, MessageCircle, Car, ChevronDown, ArrowUpRight, Bot, Clock, Target,
   ShieldCheck, Sparkles, Menu,
 } from 'lucide-react';
-import { useState, useEffect, useRef, useLayoutEffect } from 'react';
+import { useState, useEffect, useRef, useLayoutEffect, lazy, Suspense } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import LegalPolicies from './components/LegalPolicies';
@@ -13,6 +13,8 @@ import { useDoubleBackExit } from './hooks/useDoubleBackExit';
 import { useSmoothScroll } from './hooks/useSmoothScroll';
 import { useReveal } from './hooks/useReveal';
 import HeroCanvas from './components/HeroCanvas';
+// Carregado sob demanda: o runtime do Spline (~340 KB gzip) só baixa quando a cena 3D é usada.
+const SplineScene = lazy(() => import('./components/SplineScene'));
 import CustomCursor from './components/CustomCursor';
 import Preloader from './components/Preloader';
 import ScrollProgress from './components/ScrollProgress';
@@ -21,6 +23,11 @@ import TiltCard from './components/ui/TiltCard';
 import { MagneticButton } from './components/ui/MagneticButton';
 
 gsap.registerPlugin(ScrollTrigger);
+
+// Cena 3D do Spline (NEXBOT). Cole aqui a URL .splinecode exportada do Spline
+// (ex.: "https://prod.spline.design/XXXX/scene.splinecode") ou um arquivo em /public
+// (ex.: "/nexbot.splinecode"). Vazio = mostra apenas o fundo da seção.
+const SPLINE_SCENE_URL = 'https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode';
 
 // Conversão Google Ads de forma type-safe (sem poluir o escopo global).
 const fireConversion = () => {
@@ -572,6 +579,42 @@ const MarketelliOfficial = () => {
         <div className="hero-anim absolute bottom-6 left-1/2 -translate-x-1/2 hidden md:flex flex-col items-center gap-2 text-gray-600">
           <span className="text-[8px] tracking-[3px] uppercase">Role para ver</span>
           <div className="w-px h-10 bg-gradient-to-b from-[#A020F0] to-transparent" />
+        </div>
+      </section>
+
+      {/* SEÇÃO 3D — ATENDENTE DE IA (Spline / NEXBOT) */}
+      <section id="ia" className="relative z-10 min-h-[88vh] flex items-center overflow-hidden border-y border-white/5 scroll-mt-24">
+        {/* Camada traseira (z-0): cena 3D. pointer-events-auto mantém o LookAt seguindo o cursor. */}
+        {SPLINE_SCENE_URL ? (
+          <>
+            {/* brilho ambiente roxo atrás do robô (paleta do site) */}
+            <div className="absolute inset-0 z-0 flex items-center justify-center pointer-events-none">
+              <div className="w-[60vw] h-[60vw] max-w-[640px] max-h-[640px] rounded-full bg-[#A020F0]/20 blur-[120px]" />
+            </div>
+            <Suspense fallback={<div className="absolute inset-0 z-0" />}>
+              <SplineScene scene={SPLINE_SCENE_URL} className="spline-3d absolute inset-0 z-0 pointer-events-auto" />
+            </Suspense>
+          </>
+        ) : (
+          <div className="absolute inset-0 z-0 flex items-center justify-center pointer-events-auto">
+            <div className="w-64 h-64 rounded-full bg-[#A020F0]/15 blur-3xl" />
+            <span className="absolute text-[10px] tracking-[3px] uppercase text-gray-700">cena 3D do Spline (defina SPLINE_SCENE_URL)</span>
+          </div>
+        )}
+
+        {/* Conteúdo (z-10). O wrapper fica pointer-events-none para o cursor "atravessar" e o robô
+            rastrear em toda a área; os elementos clicáveis reativam pointer-events. */}
+        <div className="relative z-10 w-full max-w-7xl mx-auto px-4 md:px-6 pointer-events-none">
+          <div className="max-w-xl" data-reveal>
+            <span className="text-[#A020F0] text-[10px] md:text-xs font-bold tracking-[4px] uppercase">// Inteligência Artificial</span>
+            <h2 className="text-3xl md:text-5xl font-black tracking-tight mt-3 mb-5 uppercase text-white">Um atendente que nunca dorme</h2>
+            <p className="text-gray-400 text-sm md:text-lg font-light leading-relaxed mb-8">
+              Nossos agentes de IA respondem dúvidas, confirmam reservas e recuperam vendas 24 horas por dia — com a identidade da sua marca e integrados à sua operação.
+            </p>
+            <MagneticButton onClick={openModal} className="pointer-events-auto bg-[#A020F0] hover:bg-[#A020F0]/80 text-white px-8 py-4 rounded-full text-sm font-bold transition-colors uppercase tracking-[1px] shadow-[0_0_30px_rgba(160,32,240,0.5)]">
+              Ver como funciona <ArrowUpRight size={18} />
+            </MagneticButton>
+          </div>
         </div>
       </section>
 
