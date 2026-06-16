@@ -50,10 +50,27 @@ const PartnerImage = ({ src, alt, name, role }: { src: string; alt: string; name
   );
 };
 
+/** Logo da marca com efeito de eletricidade + neon (halo, arcos girando e flicker). */
+const ElectricLogo = ({ className = '', eager = false }: { className?: string; eager?: boolean }) => (
+  <span className={`electric-logo ${className}`}>
+    <span className="electric-glow" aria-hidden />
+    <span className="electric-ring" aria-hidden />
+    <img
+      src="/Marketellilogo.webp"
+      alt="MARKETELLI"
+      className="electric-img"
+      fetchPriority={eager ? 'high' : 'auto'}
+      loading={eager ? 'eager' : 'lazy'}
+      decoding={eager ? 'sync' : 'async'}
+    />
+  </span>
+);
+
 const MarketelliOfficial = () => {
   const [ready, setReady] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [openFaq, setOpenFaq] = useState<number | null>(0);
   useFrontendShield();
   useDoubleBackExit(isModalOpen, () => setIsModalOpen(false));
   useSmoothScroll(ready);
@@ -218,6 +235,19 @@ const MarketelliOfficial = () => {
   const marqueeItems = [
     "Hotelaria", "Restaurantes", "Pousadas", "Turismo", "Cardápio Digital",
     "Reserva Online", "Tráfego Pago", "Atendimento 24h", "Sites", "Inteligência Artificial",
+  ];
+
+  const faqs = [
+    { q: 'Para quais tipos de negócio a Marketelli trabalha?', a: 'Atendemos hotéis, pousadas, resorts, restaurantes, bares, agências de turismo e operadores de passeios. Também desenvolvemos soluções sob medida para outros negócios de serviço que querem vender mais no digital.' },
+    { q: 'O que está incluído nas soluções da agência?', a: 'Sites de alta conversão, automação de atendimento e reservas, agentes de inteligência artificial no WhatsApp, cardápio digital, gestão de tráfego pago e a integração com os sistemas que você já utiliza.' },
+    { q: 'Como funciona o diagnóstico gratuito?', a: 'Você preenche um formulário rápido escolhendo a sua área de atuação e recebemos os seus dados pelo WhatsApp. Um especialista analisa o seu cenário e apresenta um plano de ação antes de qualquer contratação — sem compromisso.' },
+    { q: 'Vocês integram com os sistemas que eu já uso?', a: 'Sim. Temos domínio dos principais sistemas de gestão do mercado, como Desbravador e Bitz, e adaptamos a tecnologia à sua operação atual, sem retrabalho e sem interromper o seu dia a dia.' },
+    { q: 'Quanto tempo leva para colocar tudo no ar?', a: 'O prazo depende do escopo, mas a maioria dos projetos entra em operação em poucas semanas. No diagnóstico você recebe um cronograma claro, com etapas e datas bem definidas.' },
+    { q: 'Os agentes de IA substituem a minha equipe?', a: 'Não. A inteligência artificial cuida do que é repetitivo — responder dúvidas, enviar confirmações e recuperar reservas — 24 horas por dia, liberando a sua equipe para o atendimento que realmente exige o toque humano.' },
+    { q: 'Como vocês reduzem a dependência de apps como iFood e Booking?', a: 'Criamos o seu próprio canal de vendas e reservas, com a sua marca. Assim você diminui as comissões pagas às plataformas e a dependência delas — nossos clientes já reduziram essa dependência em cerca de 30%.' },
+    { q: 'Qual é o investimento?', a: 'O valor varia conforme o setor e o escopo do projeto. Por isso começamos pelo diagnóstico: a partir dele você recebe uma proposta personalizada e transparente, sem surpresas.' },
+    { q: 'Os dados do meu negócio e dos meus clientes ficam seguros?', a: 'Sim. Tratamos todas as informações com sigilo e seguimos boas práticas de proteção de dados. Você encontra os detalhes na nossa página de Termos de Uso e Privacidade.' },
+    { q: 'Depois da entrega, eu tenho suporte?', a: 'Sim. Acompanhamos os resultados e oferecemos suporte contínuo para ajustes e otimizações. Para a Marketelli, a parceria não termina na entrega — é ali que ela começa.' },
   ];
 
   if (currentPage === 'policies') {
@@ -461,16 +491,13 @@ const MarketelliOfficial = () => {
       >
         <div className="flex w-full justify-between items-center max-w-7xl mx-auto">
           <button onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="flex items-center gap-2 md:gap-3 shrink-0" data-cursor="hover">
-            <div className="relative">
-              <div className="absolute inset-0 bg-[#A020F0]/20 blur-xl rounded-full animate-pulse" />
-              <img src="/Marketellilogo.webp" alt="MARKETELLI Logo" fetchPriority="high" loading="eager" decoding="sync" className="w-8 h-8 md:w-10 md:h-10 object-contain relative z-10 animate-glow-pulse" />
-            </div>
+            <ElectricLogo className="w-8 h-8 md:w-10 md:h-10 shrink-0" eager />
             <div className="flex flex-col items-start">
               <div className="relative group overflow-hidden">
                 <span className="text-sm md:text-xl font-black tracking-[3px] md:tracking-[6px] text-white relative z-10 block">MARKETELLI</span>
                 <span className="text-sm md:text-xl font-black tracking-[3px] md:tracking-[6px] text-[#A020F0] absolute inset-0 opacity-0 group-hover:opacity-70 group-hover:animate-glitch z-0">MARKETELLI</span>
               </div>
-              <span className="text-[6px] md:text-[8px] tracking-[2px] md:tracking-[4px] text-[#A020F0] uppercase">Soluções • Resultados • Tecnologia</span>
+              <span className="text-[6px] md:text-[8px] tracking-[2px] md:tracking-[4px] text-[#A020F0] uppercase shimmer-text">Soluções • Resultados • Tecnologia</span>
             </div>
           </button>
 
@@ -742,6 +769,57 @@ const MarketelliOfficial = () => {
         </div>
       </section>
 
+      {/* PERGUNTAS FREQUENTES */}
+      <section id="faq" className="py-16 md:py-24 px-4 md:px-6 relative z-10 max-w-3xl mx-auto scroll-mt-24">
+        <div data-reveal className="text-center mb-12 md:mb-16">
+          <span className="text-[#A020F0] text-[10px] md:text-xs font-bold tracking-[4px] uppercase">// Perguntas Frequentes</span>
+          <h2 className="text-3xl md:text-5xl font-black tracking-tight mt-3 uppercase text-white">Tire suas dúvidas</h2>
+        </div>
+
+        <div data-reveal data-reveal-stagger className="space-y-3 md:space-y-4">
+          {faqs.map((item, i) => {
+            const open = openFaq === i;
+            return (
+              <div
+                key={i}
+                className={`border rounded-2xl bg-white/[0.03] backdrop-blur-xl overflow-hidden transition-colors duration-300 ${open ? 'border-[#A020F0]/70' : 'border-[#A020F0]/20 hover:border-[#A020F0]/40'}`}
+              >
+                <button
+                  onClick={() => setOpenFaq(open ? null : i)}
+                  className="w-full flex items-center justify-between gap-4 p-5 md:p-6 text-left"
+                  data-cursor="hover"
+                  aria-expanded={open}
+                >
+                  <span className="text-sm md:text-lg font-bold text-white leading-snug">{item.q}</span>
+                  <Plus className={`text-[#A020F0] shrink-0 transition-transform duration-300 ${open ? 'rotate-45' : ''}`} size={22} />
+                </button>
+                <AnimatePresence initial={false}>
+                  {open && (
+                    <motion.div
+                      key="content"
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: 'auto', opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.35, ease: 'easeInOut' }}
+                      className="overflow-hidden"
+                    >
+                      <p className="px-5 md:px-6 pb-5 md:pb-6 text-gray-400 text-sm md:text-base font-light leading-relaxed">{item.a}</p>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+            );
+          })}
+        </div>
+
+        <div data-reveal className="text-center mt-12">
+          <p className="text-gray-400 text-sm mb-5 font-light">Ainda ficou com alguma dúvida?</p>
+          <MagneticButton onClick={openModal} className="bg-[#A020F0] hover:bg-[#A020F0]/80 text-white px-8 py-4 rounded-full text-sm font-bold transition-colors uppercase tracking-[1px] shadow-[0_0_30px_rgba(160,32,240,0.5)]">
+            Falar com um especialista <ArrowUpRight size={18} />
+          </MagneticButton>
+        </div>
+      </section>
+
       {/* FOOTER */}
       <footer className="py-10 md:py-14 px-4 md:px-6 border-t border-[#A020F0]/20 bg-black/50 backdrop-blur-xl relative z-10">
         <div className="max-w-7xl mx-auto">
@@ -759,11 +837,9 @@ const MarketelliOfficial = () => {
           </div>
           <div className="flex flex-col md:flex-row items-center justify-between gap-6">
             <div className="flex flex-col items-center md:items-start gap-2">
-              <div className="flex items-center gap-3">
-                <img src="/Marketellilogo.webp" alt="Logo" className="w-7 h-7 object-contain" />
-                <span className="text-base md:text-lg font-black tracking-[3px] md:tracking-[5px] animate-pulse-neon-text uppercase">MARKETELLI</span>
-              </div>
-              <span className="text-[6px] md:text-[8px] tracking-[2px] md:tracking-[4px] text-[#A020F0] uppercase">Soluções • Resultados • Tecnologia</span>
+              <ElectricLogo className="w-20 h-20 md:w-24 md:h-24 mb-3" />
+              <span className="text-base md:text-lg font-black tracking-[3px] md:tracking-[5px] animate-pulse-neon-text uppercase">MARKETELLI</span>
+              <span className="text-[6px] md:text-[8px] tracking-[2px] md:tracking-[4px] text-[#A020F0] uppercase shimmer-text">Soluções • Resultados • Tecnologia</span>
               <div className="flex items-center gap-2 pt-1">
                 <div className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse-prism" />
                 <span className="text-[8px] text-green-500 font-bold tracking-[1px] uppercase">Disponível agora</span>
