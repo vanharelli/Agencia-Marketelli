@@ -13,6 +13,7 @@ import { useDoubleBackExit } from './hooks/useDoubleBackExit';
 import { useSmoothScroll } from './hooks/useSmoothScroll';
 import { useReveal } from './hooks/useReveal';
 import HeroCanvas from './components/HeroCanvas';
+import FooterShader from './components/FooterShader';
 // Carregado sob demanda: o runtime do Spline (~340 KB gzip) só baixa quando a cena 3D é usada.
 const SplineScene = lazy(() => import('./components/SplineScene'));
 import CustomCursor from './components/CustomCursor';
@@ -864,8 +865,12 @@ const MarketelliOfficial = () => {
       </section>
 
       {/* FOOTER */}
-      <footer className="py-10 md:py-14 px-4 md:px-6 border-t border-[#A020F0]/20 bg-black/50 backdrop-blur-xl relative z-10">
-        <div className="max-w-7xl mx-auto">
+      <footer className="relative z-10 overflow-hidden py-10 md:py-14 px-4 md:px-6 border-t border-[#A020F0]/20">
+        {/* Wallpaper interativo (WebGL) exclusivo do rodapé — reage ao mouse e a cliques */}
+        <FooterShader className="absolute inset-0 z-0 w-full h-full" />
+        {/* Camada para legibilidade do texto (sutil) */}
+        <div className="absolute inset-0 z-[1] bg-black/25 pointer-events-none" />
+        <div className="relative z-10 max-w-7xl mx-auto">
           <div
             className="footer-word group relative text-center mb-10 overflow-hidden"
             data-cursor="hover"
