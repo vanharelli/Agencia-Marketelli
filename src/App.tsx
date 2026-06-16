@@ -583,30 +583,28 @@ const MarketelliOfficial = () => {
         </div>
       </section>
 
-      {/* SEÇÃO 3D — ATENDENTE DE IA (Spline / NEXBOT) */}
-      <section id="ia" className="relative z-10 min-h-[88vh] flex items-center overflow-hidden border-y border-white/5 scroll-mt-24">
-        {/* Camada traseira (z-0): cena 3D. pointer-events-auto mantém o LookAt seguindo o cursor. */}
-        {SPLINE_SCENE_URL ? (
-          <>
-            {/* brilho ambiente roxo atrás do robô (paleta do site) */}
-            <div className="absolute inset-0 z-0 flex items-center justify-center pointer-events-none">
-              <div className="w-[60vw] h-[60vw] max-w-[640px] max-h-[640px] rounded-full bg-[#A020F0]/20 blur-[120px]" />
-            </div>
-            <Suspense fallback={<div className="absolute inset-0 z-0" />}>
+      {/* SEÇÃO 3D — ATENDENTE DE IA (Spline / NEXBOT) — robô imersivo à direita, texto à esquerda */}
+      <section id="ia" className="relative z-10 min-h-[92vh] flex items-center overflow-hidden border-y border-white/5 scroll-mt-24">
+        {/* Robô: área larga (paisagem) = corpo inteiro, igual antes. No desktop deslocamos para
+            a direita com translate (o overflow-hidden da seção corta o excesso). */}
+        <div className="absolute inset-0 z-0 lg:translate-x-[15%]">
+          <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+            <div className="w-[80%] h-[80%] max-w-[680px] max-h-[680px] rounded-full bg-[#A020F0]/20 blur-[120px]" />
+          </div>
+          {SPLINE_SCENE_URL ? (
+            <Suspense fallback={<div className="absolute inset-0" />}>
               <SplineScene scene={SPLINE_SCENE_URL} className="spline-3d absolute inset-0 z-0 pointer-events-auto" />
             </Suspense>
-          </>
-        ) : (
-          <div className="absolute inset-0 z-0 flex items-center justify-center pointer-events-auto">
-            <div className="w-64 h-64 rounded-full bg-[#A020F0]/15 blur-3xl" />
-            <span className="absolute text-[10px] tracking-[3px] uppercase text-gray-700">cena 3D do Spline (defina SPLINE_SCENE_URL)</span>
-          </div>
-        )}
+          ) : (
+            <div className="absolute inset-0 flex items-center justify-center">
+              <span className="text-[10px] tracking-[3px] uppercase text-gray-700">cena 3D do Spline (defina SPLINE_SCENE_URL)</span>
+            </div>
+          )}
+        </div>
 
-        {/* Conteúdo (z-10). O wrapper fica pointer-events-none para o cursor "atravessar" e o robô
-            rastrear em toda a área; os elementos clicáveis reativam pointer-events. */}
+        {/* Texto à esquerda (wrapper sem pointer-events para o robô rastrear o cursor; botão reativa). */}
         <div className="relative z-10 w-full max-w-7xl mx-auto px-4 md:px-6 pointer-events-none">
-          <div className="max-w-xl" data-reveal>
+          <div className="max-w-md" data-reveal>
             <span className="text-[#A020F0] text-[10px] md:text-xs font-bold tracking-[4px] uppercase">// Inteligência Artificial</span>
             <h2 className="text-3xl md:text-5xl font-black tracking-tight mt-3 mb-5 uppercase text-white">Um atendente que nunca dorme</h2>
             <p className="text-gray-400 text-sm md:text-lg font-light leading-relaxed mb-8">
@@ -883,11 +881,12 @@ const MarketelliOfficial = () => {
             <span className="block text-[15vw] md:text-[10vw] leading-none font-black tracking-tighter text-white/[0.04] uppercase select-none">MARKETELLI</span>
             <span aria-hidden className="footer-word-glow block text-[15vw] md:text-[10vw] leading-none font-black tracking-tighter uppercase select-none">MARKETELLI</span>
           </div>
-          <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-            <div className="flex flex-col items-center md:items-start gap-2">
-              <ElectricLogo className="w-20 h-20 md:w-24 md:h-24 mb-3" />
+          {/* Layout empilhado e centralizado em todos os tamanhos (mesmo padrão do mobile) */}
+          <div className="flex flex-col items-center gap-5 text-center">
+            <div className="flex flex-col items-center gap-2">
+              <ElectricLogo className="electric-logo--soft w-20 h-20 md:w-24 md:h-24 mb-1" />
               <span className="text-base md:text-lg font-black tracking-[3px] md:tracking-[5px] animate-pulse-neon-text uppercase">MARKETELLI</span>
-              <span className="text-[6px] md:text-[8px] tracking-[2px] md:tracking-[4px] text-[#A020F0] uppercase shimmer-text">Soluções • Resultados • Tecnologia</span>
+              <span className="text-[7px] md:text-[8px] tracking-[2px] md:tracking-[4px] text-[#A020F0] uppercase shimmer-text">Soluções • Resultados • Tecnologia</span>
               <div className="flex items-center gap-2 pt-1">
                 <div className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse-prism" />
                 <span className="text-[8px] text-green-500 font-bold tracking-[1px] uppercase">Disponível agora</span>

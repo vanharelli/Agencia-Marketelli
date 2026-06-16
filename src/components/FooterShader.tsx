@@ -41,6 +41,17 @@ void main(){
   vec3 col = mix(vec3(0.03, 0.0, 0.07), vec3(0.52, 0.10, 0.85), smoothstep(0.25, 0.95, n));
   col += vec3(0.65, 0.15, 1.0) * pow(n, 3.0) * 0.8;
 
+  // nuvem de raios roxa: cristas finas de ruído animado (filamentos) com flicker
+  float lt = u_time * 0.5;
+  float ridge = fbm(p * 4.5 + vec2(lt, lt * 0.35) + q * 1.2);
+  float bolt = pow(1.0 - abs(ridge - 0.5) * 2.0, 11.0);
+  float flick = 0.4 + 0.6 * step(0.45, fract(sin(floor(u_time * 7.0) * 47.13) * 4375.84));
+  col += vec3(0.78, 0.45, 1.0) * bolt * 1.5 * flick;
+
+  // clarão ocasional (relâmpago)
+  float flash = pow(fract(sin(floor(u_time * 0.8) * 53.1) * 9871.3), 22.0);
+  col += vec3(0.55, 0.32, 0.95) * flash * 0.6;
+
   // brilho que segue o cursor
   float d = distance(p, m);
   col += vec3(0.7, 0.25, 1.0) * exp(-d * 3.2) * 0.95;
