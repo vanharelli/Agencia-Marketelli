@@ -229,9 +229,11 @@ html.has-custom-cursor * { cursor: none !important; }
 .aurora {
   position: absolute;
   border-radius: 50%;
-  filter: blur(110px);
+  filter: blur(96px);
   opacity: 0.45;
   will-change: transform;
+  transform: translateZ(0);
+  backface-visibility: hidden;
 }
 .aurora-1 {
   width: 50vw; height: 50vw;
@@ -400,95 +402,6 @@ html.has-custom-cursor * { cursor: none !important; }
 @keyframes marquee-scroll {
   from { transform: translateX(0); }
   to { transform: translateX(-50%); }
-}
-
-/* --- Holographic Interface (cards de setores) --- */
-.holo-card .holo-sheen,
-.holo-card .holo-scanlines,
-.holo-card .holo-grain {
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  pointer-events: none;
-  z-index: 1;
-}
-/* brilho iridescente que varre (ciano -> roxo -> magenta) */
-.holo-card .holo-sheen {
-  background: linear-gradient(115deg, transparent 30%, rgba(0, 229, 255, 0.12) 44%,
-    rgba(160, 32, 240, 0.20) 50%, rgba(255, 45, 155, 0.12) 56%, transparent 70%);
-  background-size: 250% 250%;
-  mix-blend-mode: screen;
-  animation: holo-sheen-move 7s ease-in-out infinite;
-}
-@keyframes holo-sheen-move {
-  0%, 100% { background-position: 0% 0%; }
-  50% { background-position: 100% 100%; }
-}
-/* scanlines horizontais sutis em movimento */
-.holo-card .holo-scanlines {
-  background: repeating-linear-gradient(0deg,
-    rgba(160, 32, 240, 0.07) 0px, rgba(160, 32, 240, 0.07) 1px, transparent 1px, transparent 4px);
-  mix-blend-mode: screen;
-  opacity: 0.6;
-  animation: holo-scan 6s linear infinite;
-}
-@keyframes holo-scan { from { background-position: 0 0; } to { background-position: 0 64px; } }
-/* textura de grão */
-.holo-card .holo-grain {
-  background-image: url('https://grainy-gradients.vercel.app/noise.svg');
-  opacity: 0.12;
-  mix-blend-mode: overlay;
-}
-/* holograma flutuante: orbe + anel orbitando */
-.holo-card .holo-orb {
-  position: absolute;
-  top: 1.1rem;
-  right: 1.1rem;
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  background: radial-gradient(circle at 35% 35%, rgba(0, 229, 255, 0.5), rgba(160, 32, 240, 0.3) 60%, transparent 72%);
-  filter: blur(1px);
-  pointer-events: none;
-  z-index: 1;
-  opacity: 0.7;
-  animation: holo-float 5.5s ease-in-out infinite;
-}
-.holo-card .holo-orb::after {
-  content: "";
-  position: absolute;
-  inset: -7px;
-  border-radius: 50%;
-  border: 1px solid rgba(0, 229, 255, 0.35);
-  border-top-color: rgba(216, 140, 255, 0.9);
-  animation: electric-spin 6s linear infinite;
-}
-@keyframes holo-float {
-  0%, 100% { transform: translate(0, 0); }
-  50% { transform: translate(-6px, -10px); }
-}
-/* tipografia glitch (split RGB ciano/magenta) — flashes periódicos */
-.holo-title { position: relative; }
-.holo-title::before,
-.holo-title::after {
-  content: attr(data-text);
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 100%;
-  pointer-events: none;
-  mix-blend-mode: screen;
-  opacity: 0;
-}
-.holo-title::before { color: #00e5ff; animation: holo-glitch 4s infinite; }
-.holo-title::after { color: #ff2d9b; animation: holo-glitch 4s infinite 0.06s reverse; }
-.holo-card:hover .holo-title::before,
-.holo-card:hover .holo-title::after { animation-duration: 1.6s; }
-@keyframes holo-glitch {
-  0%, 88%, 100% { transform: translate(0, 0); opacity: 0; clip-path: inset(0 0 0 0); }
-  89% { transform: translate(-2px, 1px); opacity: 0.85; clip-path: inset(18% 0 52% 0); }
-  92% { transform: translate(2px, -1px); opacity: 0.85; clip-path: inset(58% 0 12% 0); }
-  95% { transform: translate(-1px, 0); opacity: 0.6; clip-path: inset(40% 0 33% 0); }
 }
 
 /* --- Tilt card glow (follows cursor) --- */

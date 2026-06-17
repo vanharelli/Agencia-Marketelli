@@ -21,13 +21,28 @@ const SplineScene = ({ scene, className = '' }: { scene: string; className?: str
     let active = true;
     const app = new Application(canvas);
 
+    // Pausa a renderização quando o robô sai da tela (economiza GPU e destrava o scroll).
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        const a = app as unknown as { play?: () => void; stop?: () => void };
+        if (entry.isIntersecting) a.play?.();
+        else a.stop?.();
+      },
+      { threshold: 0 }
+    );
+
     app
       .load(scene)
-      .then(() => { if (active) setState('ready'); })
+      .then(() => {
+        if (!active) return;
+        setState('ready');
+        io.observe(canvas);
+      })
       .catch(() => { if (active) setState('error'); });
 
     return () => {
       active = false;
+      io.disconnect();
       app.dispose();
     };
   }, [scene]);

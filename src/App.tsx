@@ -183,8 +183,6 @@ const MarketelliOfficial = () => {
   }, [liveComments.length]);
 
   const headerBg = useTransform(scrollY, [0, 100], ["rgba(0, 0, 0, 0)", "rgba(0, 0, 0, 0.6)"]);
-  const blurValue = useTransform(scrollY, [0, 100], [0, 16]);
-  const headerBlur = useTransform(blurValue, (v) => `blur(${v}px)`);
   const headerBorder = useTransform(scrollY, [0, 100], ["rgba(160, 32, 240, 0)", "rgba(160, 32, 240, 0.3)"]);
 
   const sectors = [
@@ -494,8 +492,8 @@ const MarketelliOfficial = () => {
 
       {/* HEADER */}
       <motion.nav
-        style={{ backgroundColor: headerBg, backdropFilter: headerBlur, borderBottomColor: headerBorder }}
-        className="fixed top-0 w-full px-4 md:px-6 py-3 md:py-4 flex justify-between items-center z-50 border-b border-b-transparent"
+        style={{ backgroundColor: headerBg, borderBottomColor: headerBorder }}
+        className="fixed top-0 w-full px-4 md:px-6 py-3 md:py-4 flex justify-between items-center z-50 border-b border-b-transparent backdrop-blur-md"
       >
         <div className="flex w-full justify-between items-center max-w-7xl mx-auto">
           <button onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="flex items-center gap-2 md:gap-3 shrink-0" data-cursor="hover">
@@ -652,18 +650,13 @@ const MarketelliOfficial = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 max-w-md md:max-w-none mx-auto">
           {sectorCards.map((item, index) => (
             <div key={index} data-reveal data-cursor="hover">
-              <TiltCard className="holo-card relative h-full p-6 md:p-8 bg-white/[0.03] backdrop-blur-xl border border-[#A020F0]/25 rounded-2xl overflow-hidden group hover:border-[#A020F0]/70 transition-colors duration-500">
+              <TiltCard className="relative h-full p-6 md:p-8 bg-white/[0.03] backdrop-blur-xl border border-[#A020F0]/25 rounded-2xl overflow-hidden group hover:border-[#A020F0]/70 transition-colors duration-500">
                 <div className="card-glow" />
-                {/* Holographic Interface: brilho iridescente, scanlines, grão e holograma flutuante */}
-                <span className="holo-sheen" aria-hidden />
-                <span className="holo-scanlines" aria-hidden />
-                <span className="holo-grain" aria-hidden />
-                <span className="holo-orb" aria-hidden />
                 <div className="relative z-10">
                   <div className="mb-6 w-14 h-14 rounded-xl bg-[#A020F0]/15 border border-[#A020F0]/40 flex items-center justify-center text-[#D18CFF] group-hover:scale-110 group-hover:text-white transition-all duration-500">
                     {item.icon}
                   </div>
-                  <h3 data-text={item.title} className="holo-title text-lg md:text-xl font-black mb-2 tracking-[1px] uppercase text-white">{item.title}</h3>
+                  <h3 className="text-lg md:text-xl font-black mb-2 tracking-[1px] uppercase text-white">{item.title}</h3>
                   <p className="text-[#A020F0] font-bold text-[10px] md:text-xs tracking-[1px] md:tracking-[2px] mb-6 md:mb-8 uppercase">{item.subtitle}</p>
                   <ul className="space-y-3 md:space-y-4">
                     {item.points.map((point, i) => (
