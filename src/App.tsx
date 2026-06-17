@@ -20,7 +20,7 @@ import CustomCursor from './components/CustomCursor';
 import Preloader from './components/Preloader';
 import ScrollProgress from './components/ScrollProgress';
 import CountUp from './components/CountUp';
-import PortalCard from './components/ui/PortalCard';
+import TiltCard from './components/ui/TiltCard';
 import { MagneticButton } from './components/ui/MagneticButton';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -649,24 +649,27 @@ const MarketelliOfficial = () => {
           <h2 className="text-3xl md:text-5xl font-black tracking-tight mt-3 uppercase text-white">Soluções feitas para o seu setor</h2>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-8 max-w-md md:max-w-none mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 max-w-md md:max-w-none mx-auto">
           {sectorCards.map((item, index) => (
             <div key={index} data-reveal data-cursor="hover">
-              <PortalCard>
-                <div className="mb-4 w-12 h-12 rounded-xl bg-[#A020F0]/15 border border-[#A020F0]/40 flex items-center justify-center text-[#D18CFF]">
-                  {item.icon}
+              <TiltCard className="relative h-full p-6 md:p-8 bg-white/[0.03] backdrop-blur-xl border border-[#A020F0]/25 rounded-2xl overflow-hidden group hover:border-[#A020F0]/70 transition-colors duration-500">
+                <div className="card-glow" />
+                <div className="relative z-10">
+                  <div className="mb-6 w-14 h-14 rounded-xl bg-[#A020F0]/15 border border-[#A020F0]/40 flex items-center justify-center text-[#D18CFF] group-hover:scale-110 group-hover:text-white transition-all duration-500">
+                    {item.icon}
+                  </div>
+                  <h3 className="text-lg md:text-xl font-black mb-2 tracking-[1px] uppercase text-white">{item.title}</h3>
+                  <p className="text-[#A020F0] font-bold text-[10px] md:text-xs tracking-[1px] md:tracking-[2px] mb-6 md:mb-8 uppercase">{item.subtitle}</p>
+                  <ul className="space-y-3 md:space-y-4">
+                    {item.points.map((point, i) => (
+                      <li key={i} className="flex items-start gap-3">
+                        <Check className="text-[#A020F0] shrink-0 mt-1" size={14} />
+                        <span className="text-gray-300 text-xs md:text-sm font-light leading-relaxed">{point}</span>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
-                <h3 className="text-xl md:text-2xl font-black tracking-tight leading-tight uppercase text-white mb-2">{item.title}</h3>
-                <p className="text-[#D18CFF] font-bold text-[10px] tracking-[2px] mb-5 uppercase max-w-[14rem]">{item.subtitle}</p>
-                <ul className="space-y-2.5 text-left max-w-[15rem]">
-                  {item.points.map((point, i) => (
-                    <li key={i} className="flex items-start gap-2">
-                      <Check className="text-[#D18CFF] shrink-0 mt-0.5" size={13} />
-                      <span className="text-gray-300 text-xs font-light leading-relaxed">{point}</span>
-                    </li>
-                  ))}
-                </ul>
-              </PortalCard>
+              </TiltCard>
             </div>
           ))}
         </div>

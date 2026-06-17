@@ -1,8 +1,9 @@
 import React, { useRef } from 'react';
 
 /**
- * TiltCard — inclinação 3D sutil seguindo o cursor + brilho que acompanha.
- * Só em ponteiros finos; em toque fica estático.
+ * TiltCard — card com inclinação 3D leve seguindo o cursor + brilho que acompanha.
+ * Usa eventos de ponteiro e só inclina com mouse real (pointerType "mouse"),
+ * então no toque (mobile) fica estático e estável — sem bug e sem lag.
  */
 const TiltCard = ({
   children,
@@ -15,8 +16,8 @@ const TiltCard = ({
 }) => {
   const ref = useRef<HTMLDivElement>(null);
 
-  const handleMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (!window.matchMedia('(pointer: fine)').matches) return;
+  const move = (e: React.PointerEvent<HTMLDivElement>) => {
+    if (e.pointerType !== 'mouse') return;
     const el = ref.current!;
     const r = el.getBoundingClientRect();
     const px = (e.clientX - r.left) / r.width;
@@ -28,16 +29,17 @@ const TiltCard = ({
     el.style.setProperty('--my', `${py * 100}%`);
   };
 
-  const handleLeave = () => {
-    const el = ref.current!;
-    el.style.transform = 'perspective(900px) rotateX(0) rotateY(0) translateY(0)';
+  const reset = () => {
+    const el = ref.current;
+    if (el) el.style.transform = 'perspective(900px) rotateX(0) rotateY(0) translateY(0)';
   };
 
   return (
     <div
       ref={ref}
-      onMouseMove={handleMove}
-      onMouseLeave={handleLeave}
+      onPointerMove={move}
+      onPointerLeave={reset}
+      onPointerCancel={reset}
       className={`tilt-card transition-transform duration-300 ease-out will-change-transform ${className}`}
     >
       {children}
