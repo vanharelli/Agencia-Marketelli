@@ -1,33 +1,17 @@
-import React, { useRef } from 'react';
+import React from 'react';
 
 /**
- * PortalCard — card "portal" com túnel 3D em paralaxe.
- * Molduras neon recuam em profundidade (translateZ) formando um portal; o card
- * inclina seguindo o cursor (preserve-3d), criando paralaxe entre as camadas.
- * O conteúdo (children) flutua à frente, no centro do portal.
+ * PortalCard — card "portal" com túnel 3D estático (sem paralaxe/inclinação).
+ * As molduras neon recuam em profundidade (translateZ + perspective) formando o
+ * portal; o conteúdo (children) fica na 3ª camada, dentro do portal. Sem interação
+ * de mouse/toque, então é estável igual no web e no mobile.
  */
 const FRAMES = 6;
 
 const PortalCard = ({ children, className = '' }: { children: React.ReactNode; className?: string }) => {
-  const ref = useRef<HTMLDivElement>(null);
-  const inner = useRef<HTMLDivElement>(null);
-
-  // Só inclina com mouse real. No toque (pointerType "touch"/"pen") fica estático,
-  // evitando o card travar inclinado (o toque não dispara "leave").
-  const move = (e: React.PointerEvent<HTMLDivElement>) => {
-    if (e.pointerType !== 'mouse') return;
-    const r = ref.current!.getBoundingClientRect();
-    const px = (e.clientX - r.left) / r.width - 0.5;
-    const py = (e.clientY - r.top) / r.height - 0.5;
-    if (inner.current) inner.current.style.transform = `rotateX(${-py * 18}deg) rotateY(${px * 18}deg)`;
-  };
-  const reset = () => {
-    if (inner.current) inner.current.style.transform = 'rotateX(0deg) rotateY(0deg)';
-  };
-
   return (
-    <div ref={ref} onPointerMove={move} onPointerLeave={reset} onPointerCancel={reset} onPointerDown={reset} className={`portal-card ${className}`}>
-      <div ref={inner} className="portal-inner">
+    <div className={`portal-card ${className}`}>
+      <div className="portal-inner">
         <div className="portal-wall" />
         {Array.from({ length: FRAMES }).map((_, i) => (
           <span

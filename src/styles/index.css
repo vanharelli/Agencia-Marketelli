@@ -412,8 +412,6 @@ html.has-custom-cursor * { cursor: none !important; }
   width: 100%;
   min-height: 470px;
   transform-style: preserve-3d;
-  transition: transform 0.5s cubic-bezier(0.23, 1, 0.32, 1);
-  will-change: transform;
 }
 /* parede do fundo (final do túnel) */
 .portal-wall {
