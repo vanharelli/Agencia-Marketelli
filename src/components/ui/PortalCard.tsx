@@ -12,23 +12,21 @@ const PortalCard = ({ children, className = '' }: { children: React.ReactNode; c
   const ref = useRef<HTMLDivElement>(null);
   const inner = useRef<HTMLDivElement>(null);
 
-  const move = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (!window.matchMedia('(pointer: fine)').matches) return;
+  // Só inclina com mouse real. No toque (pointerType "touch"/"pen") fica estático,
+  // evitando o card travar inclinado (o toque não dispara "leave").
+  const move = (e: React.PointerEvent<HTMLDivElement>) => {
+    if (e.pointerType !== 'mouse') return;
     const r = ref.current!.getBoundingClientRect();
     const px = (e.clientX - r.left) / r.width - 0.5;
     const py = (e.clientY - r.top) / r.height - 0.5;
-    if (inner.current) {
-      inner.current.style.transform = `rotateX(${-py * 18}deg) rotateY(${px * 18}deg)`;
-      inner.current.style.setProperty('--px', `${px}`);
-      inner.current.style.setProperty('--py', `${py}`);
-    }
+    if (inner.current) inner.current.style.transform = `rotateX(${-py * 18}deg) rotateY(${px * 18}deg)`;
   };
-  const leave = () => {
+  const reset = () => {
     if (inner.current) inner.current.style.transform = 'rotateX(0deg) rotateY(0deg)';
   };
 
   return (
-    <div ref={ref} onMouseMove={move} onMouseLeave={leave} className={`portal-card ${className}`}>
+    <div ref={ref} onPointerMove={move} onPointerLeave={reset} onPointerCancel={reset} onPointerDown={reset} className={`portal-card ${className}`}>
       <div ref={inner} className="portal-inner">
         <div className="portal-wall" />
         {Array.from({ length: FRAMES }).map((_, i) => (
