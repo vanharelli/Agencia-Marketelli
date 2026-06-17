@@ -402,6 +402,78 @@ html.has-custom-cursor * { cursor: none !important; }
   to { transform: translateX(-50%); }
 }
 
+/* --- Portal card: túnel neon 3D em paralaxe --- */
+.portal-card {
+  position: relative;
+  perspective: 1000px;
+}
+.portal-inner {
+  position: relative;
+  width: 100%;
+  min-height: 470px;
+  transform-style: preserve-3d;
+  transition: transform 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+  will-change: transform;
+}
+/* parede do fundo (final do túnel) */
+.portal-wall {
+  position: absolute;
+  inset: 0;
+  border-radius: 24px;
+  background: radial-gradient(130% 120% at 50% 45%, #15041f 0%, #04000a 78%);
+  transform: translateZ(-300px) scale(1.18);
+}
+/* molduras neon que recuam (anel via máscara para borda com gradiente arredondado) */
+.portal-layer {
+  position: absolute;
+  inset: 0;
+  border-radius: 24px;
+  background: linear-gradient(135deg, #A020F0, #d81bff 45%, #ff2d9b);
+  padding: 2px;
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  mask-composite: exclude;
+  filter: drop-shadow(0 0 6px rgba(160, 32, 240, 0.5));
+  pointer-events: none;
+}
+/* face branca da frente (borda externa) com brilho neon suave (padrão do site) */
+.portal-face {
+  position: absolute;
+  inset: 0;
+  border-radius: 26px;
+  border: 1.5px solid rgba(255, 255, 255, 0.78);
+  transform: translateZ(2px);
+  pointer-events: none;
+  animation: portal-glow 4.5s ease-in-out infinite;
+}
+@keyframes portal-glow {
+  0%, 100% {
+    box-shadow: 0 0 18px rgba(160, 32, 240, 0.28), 0 24px 55px rgba(0, 0, 0, 0.55);
+    border-color: rgba(255, 255, 255, 0.7);
+  }
+  50% {
+    box-shadow: 0 0 34px rgba(160, 32, 240, 0.55), 0 0 64px rgba(160, 32, 240, 0.25), 0 24px 55px rgba(0, 0, 0, 0.55);
+    border-color: rgba(216, 140, 255, 0.95);
+  }
+}
+/* conteúdo na 3ª camada do portal (translateZ -104px): parece estar dentro do portal,
+   com as 2 primeiras molduras à frente emoldurando o texto. */
+.portal-content {
+  position: relative;
+  min-height: 470px;
+  padding: 2.6rem 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  transform: translateZ(-104px);
+}
+@media (prefers-reduced-motion: reduce) {
+  .portal-inner { transition: none; }
+}
+
 /* --- Tilt card glow (follows cursor) --- */
 .tilt-card { position: relative; transform-style: preserve-3d; }
 .card-glow {
