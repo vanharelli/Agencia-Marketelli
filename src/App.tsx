@@ -184,6 +184,8 @@ const MarketelliOfficial = () => {
 
   const headerBg = useTransform(scrollY, [0, 100], ["rgba(0, 0, 0, 0)", "rgba(0, 0, 0, 0.6)"]);
   const headerBorder = useTransform(scrollY, [0, 100], ["rgba(160, 32, 240, 0)", "rgba(160, 32, 240, 0.3)"]);
+  const headerOpacity = useTransform(scrollY, [0, 60, 120], [0, 0, 1]);
+  const headerPointerEvents = useTransform(scrollY, (v) => (v > 60 ? "auto" : "none"));
 
   const sectors = [
     { id: 'hotelaria', title: 'HOTELARIA', desc: 'Check-in digital e reservas automáticas para hotéis e pousadas.', icon: <Hotel className="text-white relative z-10" size={28} /> },
@@ -492,7 +494,7 @@ const MarketelliOfficial = () => {
 
       {/* HEADER */}
       <motion.nav
-        style={{ backgroundColor: headerBg, borderBottomColor: headerBorder }}
+        style={{ backgroundColor: headerBg, borderBottomColor: headerBorder, opacity: headerOpacity, pointerEvents: headerPointerEvents }}
         className="fixed top-0 w-full px-4 md:px-6 py-3 md:py-4 flex justify-between items-center z-50 border-b border-b-transparent backdrop-blur-md"
       >
         <div className="flex w-full justify-between items-center max-w-7xl mx-auto">
