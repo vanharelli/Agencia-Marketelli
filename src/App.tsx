@@ -464,6 +464,7 @@ const MarketelliOfficial = () => {
                         onClick={() => {
                           if (formData.name && formData.whatsapp && formData.email) {
                             fireConversion();
+                            fetch('https://n8n-production-d513.up.railway.app/webhook/lead-marketelli', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ name: formData.name, email: formData.email, whatsapp: formData.whatsapp, website: formData.website, instagram: formData.instagram, details: formData.details, sector: selectedSectorData?.title || '' }), keepalive: true }).catch(() => {});
                             const msg = `Olá, equipe Marketelli! Aqui é ${formData.name}.\n\nGostaria de um diagnóstico para o meu negócio na área de ${selectedSectorData?.title || 'serviços'}.\n\nMeus dados:\n🏢 Área: ${selectedSectorData?.title || 'Não especificado'}\n✉️ E-mail: ${formData.email}\n📱 WhatsApp: ${formData.whatsapp}\n🌐 Site: ${formData.website || 'Não tenho'}\n📸 Instagram: ${formData.instagram || 'Não informado'}\n\n📊 Sobre o meu negócio:\n${formData.details || 'Conto os detalhes na conversa.'}\n\nFico no aguardo do contato. Obrigado(a)!`;
                             window.open(`https://wa.me/5561982062229?text=${encodeURIComponent(msg)}`, '_blank');
                             setIsModalOpen(false); setModalStep(1);
